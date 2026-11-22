@@ -1,0 +1,1624 @@
+{
+ "status": "unverified",
+ "note": "These four tables were added on top of the three source tables in an earlier version of the page. They have not been checked line by line against the register. The page keeps them out of totals and charts.",
+ "defendants": [
+  {
+   "defendant_id": 1,
+   "decree_id": 1,
+   "defendant_name": "Regional Tax Collectors & Irregular Troops",
+   "defendant_category": "Fiscal & Tax Agents",
+   "defendant_status": "Fiscal / Waqf"
+  },
+  {
+   "defendant_id": 2,
+   "decree_id": 2,
+   "defendant_name": "Unidentified Assailants (Edirne–Meğri Road)",
+   "defendant_category": "Private / Criminal Suspects",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 3,
+   "decree_id": 5,
+   "defendant_name": "Local Encroachers (Yenişehir–İzdin)",
+   "defendant_category": "Private / Landholders",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 4,
+   "decree_id": 6,
+   "defendant_name": "Local Officials & Harbor Patrol (Ahyolu)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 5,
+   "decree_id": 7,
+   "defendant_name": "Provincial Revenue Sub-Agent (Tripolitsa)",
+   "defendant_category": "Fiscal & Tax Agents",
+   "defendant_status": "Fiscal / Waqf"
+  },
+  {
+   "defendant_id": 6,
+   "decree_id": 8,
+   "defendant_name": "Defaulting Debtor (Rhodes)",
+   "defendant_category": "Private / Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 7,
+   "decree_id": 9,
+   "defendant_name": "Tımar & Revenue Interferers (Tire)",
+   "defendant_category": "Fiscal & Tax Agents",
+   "defendant_status": "Fiscal / Waqf"
+  },
+  {
+   "defendant_id": 8,
+   "decree_id": 10,
+   "defendant_name": "Subordinate Sancak Retainers (Aydın)",
+   "defendant_category": "Military / Armed Retainers",
+   "defendant_status": "Military / Armed"
+  },
+  {
+   "defendant_id": 9,
+   "decree_id": 11,
+   "defendant_name": "Provincial Governor's Tax Agents (Trabzon)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 10,
+   "decree_id": 12,
+   "defendant_name": "Harboring Parties of Fugitive Slaves",
+   "defendant_category": "Private / Civilian",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 11,
+   "decree_id": 14,
+   "defendant_name": "Millers / Neighboring Cultivators (Eskişehir)",
+   "defendant_category": "Private / Landholders",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 12,
+   "decree_id": 15,
+   "defendant_name": "External Nomadic & Non-Local Herders",
+   "defendant_category": "Private / Pastoralists",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 13,
+   "decree_id": 16,
+   "defendant_name": "Waqf Trustee (Mütevelli) Bekir",
+   "defendant_category": "Waqf & Fiscal Trustees",
+   "defendant_status": "Fiscal / Waqf"
+  },
+  {
+   "defendant_id": 14,
+   "decree_id": 17,
+   "defendant_name": "Janissaries Sefer and Piyale",
+   "defendant_category": "Military / Janissaries",
+   "defendant_status": "Military / Armed"
+  },
+  {
+   "defendant_id": 15,
+   "decree_id": 18,
+   "defendant_name": "Legal Attorney (Vekil) & Property Buyer",
+   "defendant_category": "Private / Legal Agents",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 16,
+   "decree_id": 19,
+   "defendant_name": "Boğazhisar Castle Warden (Dizdar)",
+   "defendant_category": "Military / Garrison Officers",
+   "defendant_status": "Military / Armed"
+  },
+  {
+   "defendant_id": 17,
+   "decree_id": 20,
+   "defendant_name": "Kadi Ahmed (Gölbazarı)",
+   "defendant_category": "Judicial / Kadi & Naib",
+   "defendant_status": "Judicial / Kadi"
+  },
+  {
+   "defendant_id": 18,
+   "decree_id": 21,
+   "defendant_name": "Interfering Merchants & Local Tax Brokers",
+   "defendant_category": "Fiscal & Tax Agents",
+   "defendant_status": "Fiscal / Waqf"
+  },
+  {
+   "defendant_id": 19,
+   "decree_id": 22,
+   "defendant_name": "Market Inspector (Bazar Başı)",
+   "defendant_category": "Municipal / Market Officials",
+   "defendant_status": "Municipal / Guild"
+  },
+  {
+   "defendant_id": 20,
+   "decree_id": 23,
+   "defendant_name": "Rival Jurisdiction Magistrates (Hariç Reaya)",
+   "defendant_category": "Judicial / Kadi & Naib",
+   "defendant_status": "Judicial / Kadi"
+  },
+  {
+   "defendant_id": 21,
+   "decree_id": 24,
+   "defendant_name": "Adjacent Property Owner (İstanbul)",
+   "defendant_category": "Private / Urban Neighbors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 22,
+   "decree_id": 25,
+   "defendant_name": "Ex-Husband (Boğazhisar / Çanakkale)",
+   "defendant_category": "Private / Family Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 23,
+   "decree_id": 27,
+   "defendant_name": "Defaulting Züamâ & Tımar Holders (Rumeli)",
+   "defendant_category": "Military / Timar Holders",
+   "defendant_status": "Military / Armed"
+  },
+  {
+   "defendant_id": 24,
+   "decree_id": 28,
+   "defendant_name": "Local Speculators & Port Officials (Midilli)",
+   "defendant_category": "Municipal / Market Officials",
+   "defendant_status": "Municipal / Guild"
+  },
+  {
+   "defendant_id": 25,
+   "decree_id": 29,
+   "defendant_name": "Rival Mütesellim Claimants (Kayseri)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 26,
+   "decree_id": 30,
+   "defendant_name": "Osman Beyoğlu Ahmed (Yenişehir / Bursa)",
+   "defendant_category": "Private / Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 27,
+   "decree_id": 31,
+   "defendant_name": "Unauthorized Settlers & Tax Assessors",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 28,
+   "decree_id": 32,
+   "defendant_name": "Local Tax Obstructors (Tatarpazarı)",
+   "defendant_category": "Fiscal & Tax Agents",
+   "defendant_status": "Fiscal / Waqf"
+  },
+  {
+   "defendant_id": 29,
+   "decree_id": 33,
+   "defendant_name": "Co-Heirs Withholding Estate Share (Bursa)",
+   "defendant_category": "Private / Family Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 30,
+   "decree_id": 34,
+   "defendant_name": "Delayed Provincial Provisioners (Haleb)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 31,
+   "decree_id": 35,
+   "defendant_name": "Local Revenue Withholders (Aegean Sancaks)",
+   "defendant_category": "Fiscal & Tax Agents",
+   "defendant_status": "Fiscal / Waqf"
+  },
+  {
+   "defendant_id": 32,
+   "decree_id": 36,
+   "defendant_name": "Port & Customs Confiscators (Boğazhisar)",
+   "defendant_category": "Military / Naval & Port",
+   "defendant_status": "Military / Armed"
+  },
+  {
+   "defendant_id": 33,
+   "decree_id": 37,
+   "defendant_name": "Local Armed Retainers / Ehli Örf (Tire)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 34,
+   "decree_id": 38,
+   "defendant_name": "Disputing Property Vendors (Üsküdar)",
+   "defendant_category": "Private / Urban Sellers",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 35,
+   "decree_id": 39,
+   "defendant_name": "Defaulting Contractor / Employer (Edirne)",
+   "defendant_category": "Private / Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 36,
+   "decree_id": 40,
+   "defendant_name": "Defaulting Paymaster / Debtors (Edirne)",
+   "defendant_category": "Private / Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 37,
+   "decree_id": 41,
+   "defendant_name": "Commercial Debtor (İzmir)",
+   "defendant_category": "Private / Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 38,
+   "decree_id": 42,
+   "defendant_name": "Unlawful Levy Collectors / Ehli Örf (Bilecik)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 39,
+   "decree_id": 43,
+   "defendant_name": "Corrupt District Administrators (Seydişehir)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 40,
+   "decree_id": 44,
+   "defendant_name": "Confiscating Local Commanders (Çal / Kütahya)",
+   "defendant_category": "Military / Armed Retainers",
+   "defendant_status": "Military / Armed"
+  },
+  {
+   "defendant_id": 41,
+   "decree_id": 45,
+   "defendant_name": "Withholding Estate Guardians (Edirne)",
+   "defendant_category": "Private / Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 42,
+   "decree_id": 46,
+   "defendant_name": "Rival Office Claimants (Aydın–Konya)",
+   "defendant_category": "Military / Janissaries",
+   "defendant_status": "Military / Armed"
+  },
+  {
+   "defendant_id": 43,
+   "decree_id": 47,
+   "defendant_name": "Extortionate Sancak Officials (Hamid–Hoyran)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 44,
+   "decree_id": 48,
+   "defendant_name": "Disputing Frontier Garrison Officers",
+   "defendant_category": "Military / Garrison Officers",
+   "defendant_status": "Military / Armed"
+  },
+  {
+   "defendant_id": 45,
+   "decree_id": 49,
+   "defendant_name": "Competing Waqf Trustees (Bursa)",
+   "defendant_category": "Waqf & Fiscal Trustees",
+   "defendant_status": "Fiscal / Waqf"
+  },
+  {
+   "defendant_id": 46,
+   "decree_id": 50,
+   "defendant_name": "Irregular Levies & Frontier Raiders (Kars)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 47,
+   "decree_id": 51,
+   "defendant_name": "Encroaching Neighbors on Waqf Land (Edincik)",
+   "defendant_category": "Private / Landholders",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 48,
+   "decree_id": 52,
+   "defendant_name": "Defaulting Guild/Military Buyers (Bursa)",
+   "defendant_category": "Private / Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 49,
+   "decree_id": 53,
+   "defendant_name": "Illegal Tax & Corvée Exactors (Üsküb)",
+   "defendant_category": "Provincial / Local Officials",
+   "defendant_status": "Provincial Admin"
+  },
+  {
+   "defendant_id": 50,
+   "decree_id": 54,
+   "defendant_name": "Insolvent Merchant / Official Debtor (Diyarbekir)",
+   "defendant_category": "Private / Debtors",
+   "defendant_status": "Private / Civilian"
+  },
+  {
+   "defendant_id": 51,
+   "decree_id": 55,
+   "defendant_name": "Usurpers of Waqf Real Estate (Haleb)",
+   "defendant_category": "Waqf & Fiscal Trustees",
+   "defendant_status": "Fiscal / Waqf"
+  },
+  {
+   "defendant_id": 52,
+   "decree_id": 56,
+   "defendant_name": "Defaulting Sub-Commanders (Rakka–Birecik)",
+   "defendant_category": "Military / Garrison Officers",
+   "defendant_status": "Military / Armed"
+  }
+ ],
+ "financial_claims": [
+  {
+   "claim_id": 1,
+   "decree_id": 1,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Taxation / Desolation Relief",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 2,
+   "decree_id": 2,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Criminal / Blood-Money (Diyet) Eligible",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 3,
+   "decree_id": 5,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Land Boundary / Rent",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 4,
+   "decree_id": 6,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Harassment / Illegal Exaction",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 5,
+   "decree_id": 7,
+   "amount_gurus": 1850,
+   "amount_akce": 0,
+   "normalized_gurus": 1850,
+   "claim_type": "Embezzlement / Provincial Treasury",
+   "quantification": "Archival Estimate (Vizierial Audit)"
+  },
+  {
+   "claim_id": 6,
+   "decree_id": 8,
+   "amount_gurus": 320,
+   "amount_akce": 0,
+   "normalized_gurus": 320,
+   "claim_type": "Commercial Debt",
+   "quantification": "Archival Estimate (Island Ledger)"
+  },
+  {
+   "claim_id": 7,
+   "decree_id": 9,
+   "amount_gurus": 1400,
+   "amount_akce": 0,
+   "normalized_gurus": 1400,
+   "claim_type": "Fiscal Revenue Dispute",
+   "quantification": "Archival Estimate (Hass Income)"
+  },
+  {
+   "claim_id": 8,
+   "decree_id": 10,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Administrative Misconduct",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 9,
+   "decree_id": 11,
+   "amount_gurus": 480,
+   "amount_akce": 0,
+   "normalized_gurus": 480,
+   "claim_type": "Illegal Taxation (Tekâlif-i Şâkka)",
+   "quantification": "Archival Estimate (Kaza Assessment)"
+  },
+  {
+   "claim_id": 10,
+   "decree_id": 12,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Property / Fugitive Restitution",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 11,
+   "decree_id": 14,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Waqf Water Rights",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 12,
+   "decree_id": 15,
+   "amount_gurus": 0,
+   "amount_akce": 2400,
+   "normalized_gurus": 30,
+   "claim_type": "Customary Pasturage Fee (Otlak Resmi)",
+   "quantification": "Archival Estimate (Per-Flock Rate)"
+  },
+  {
+   "claim_id": 13,
+   "decree_id": 16,
+   "amount_gurus": 450,
+   "amount_akce": 0,
+   "normalized_gurus": 450,
+   "claim_type": "Waqf Extortion & Over-Assessment",
+   "quantification": "Archival Estimate (Waqf Register)"
+  },
+  {
+   "claim_id": 14,
+   "decree_id": 17,
+   "amount_gurus": 600,
+   "amount_akce": 0,
+   "normalized_gurus": 600,
+   "claim_type": "Waqf Cash Fund Debt (Nukûd-ı Mevkufe)",
+   "quantification": "Archival Estimate (Waqf Loan)"
+  },
+  {
+   "claim_id": 15,
+   "decree_id": 18,
+   "amount_gurus": 750,
+   "amount_akce": 0,
+   "normalized_gurus": 750,
+   "claim_type": "Fraudulent Real Estate Sale",
+   "quantification": "Archival Estimate (Mülk Valuation)"
+  },
+  {
+   "claim_id": 16,
+   "decree_id": 19,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Unlawful Imprisonment",
+   "quantification": "Non-Monetary"
+  },
+  {
+   "claim_id": 17,
+   "decree_id": 20,
+   "amount_gurus": 920,
+   "amount_akce": 0,
+   "normalized_gurus": 920,
+   "claim_type": "Judicial Extortion & Illegal Fees",
+   "quantification": "Archival Estimate (Kaza Grievance)"
+  },
+  {
+   "claim_id": 18,
+   "decree_id": 21,
+   "amount_gurus": 0,
+   "amount_akce": 4,
+   "normalized_gurus": 0.05,
+   "claim_type": "Customs Fee (4 Akçe / Unit)",
+   "quantification": "Explicit in Decree Text (Unit Rate)"
+  },
+  {
+   "claim_id": 19,
+   "decree_id": 22,
+   "amount_gurus": 180,
+   "amount_akce": 0,
+   "normalized_gurus": 180,
+   "claim_type": "Market Inspector Extortion",
+   "quantification": "Archival Estimate (Guild Levy)"
+  },
+  {
+   "claim_id": 20,
+   "decree_id": 23,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Jurisdictional Fee Dispute",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 21,
+   "decree_id": 24,
+   "amount_gurus": 260,
+   "amount_akce": 0,
+   "normalized_gurus": 260,
+   "claim_type": "Property Damage & Repair Extortion",
+   "quantification": "Archival Estimate (Urban Assessment)"
+  },
+  {
+   "claim_id": 22,
+   "decree_id": 25,
+   "amount_gurus": 150,
+   "amount_akce": 0,
+   "normalized_gurus": 150,
+   "claim_type": "Unpaid Mahr (Mehr-i Müeccel) & Chattels",
+   "quantification": "Archival Estimate (Sharia Court Claim)"
+  },
+  {
+   "claim_id": 23,
+   "decree_id": 27,
+   "amount_gurus": 6330,
+   "amount_akce": 0,
+   "normalized_gurus": 6330,
+   "claim_type": "Campaign Expenses & Loans",
+   "quantification": "Explicit in Decree Text"
+  },
+  {
+   "claim_id": 24,
+   "decree_id": 28,
+   "amount_gurus": 1200,
+   "amount_akce": 0,
+   "normalized_gurus": 1200,
+   "claim_type": "Official-Rate Maritime Soap Trade",
+   "quantification": "Archival Estimate (3-Ship Cargo)"
+  },
+  {
+   "claim_id": 25,
+   "decree_id": 29,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Office Appointment (Temessük)",
+   "quantification": "Non-Monetary"
+  },
+  {
+   "claim_id": 26,
+   "decree_id": 30,
+   "amount_gurus": 2200,
+   "amount_akce": 0,
+   "normalized_gurus": 2200,
+   "claim_type": "Contractual Debt Default",
+   "quantification": "Explicit in Decree Text"
+  },
+  {
+   "claim_id": 27,
+   "decree_id": 31,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Resettlement & Tax Exemption",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 28,
+   "decree_id": 32,
+   "amount_gurus": 540,
+   "amount_akce": 0,
+   "normalized_gurus": 540,
+   "claim_type": "Tax Obstruction",
+   "quantification": "Archival Estimate (Kaza Arrears)"
+  },
+  {
+   "claim_id": 29,
+   "decree_id": 33,
+   "amount_gurus": 380,
+   "amount_akce": 0,
+   "normalized_gurus": 380,
+   "claim_type": "Inheritance Share (Tereke)",
+   "quantification": "Archival Estimate (Estate Division)"
+  },
+  {
+   "claim_id": 30,
+   "decree_id": 34,
+   "amount_gurus": 3100,
+   "amount_akce": 0,
+   "normalized_gurus": 3100,
+   "claim_type": "Military Provisioning (Nüzül / Sürsat)",
+   "quantification": "Archival Estimate (Provincial Supply)"
+  },
+  {
+   "claim_id": 31,
+   "decree_id": 35,
+   "amount_gurus": 890,
+   "amount_akce": 0,
+   "normalized_gurus": 890,
+   "claim_type": "Multi-Sancak Revenue Collection",
+   "quantification": "Archival Estimate (Mukataa Arrears)"
+  },
+  {
+   "claim_id": 32,
+   "decree_id": 36,
+   "amount_gurus": 640,
+   "amount_akce": 0,
+   "normalized_gurus": 640,
+   "claim_type": "Unlawful Confiscation",
+   "quantification": "Archival Estimate (Naval Inventory)"
+  },
+  {
+   "claim_id": 33,
+   "decree_id": 37,
+   "amount_gurus": 720,
+   "amount_akce": 0,
+   "normalized_gurus": 720,
+   "claim_type": "Extortion (Cerîme / Salgın)",
+   "quantification": "Archival Estimate (Town Grievance)"
+  },
+  {
+   "claim_id": 34,
+   "decree_id": 38,
+   "amount_gurus": 1500,
+   "amount_akce": 0,
+   "normalized_gurus": 1500,
+   "claim_type": "Vizierial Property Purchase",
+   "quantification": "Archival Estimate (Üsküdar Estate)"
+  },
+  {
+   "claim_id": 35,
+   "decree_id": 39,
+   "amount_gurus": 210,
+   "amount_akce": 0,
+   "normalized_gurus": 210,
+   "claim_type": "Artisan Wage / Nonpayment",
+   "quantification": "Archival Estimate (Craft Claim)"
+  },
+  {
+   "claim_id": 36,
+   "decree_id": 40,
+   "amount_gurus": 195,
+   "amount_akce": 0,
+   "normalized_gurus": 195,
+   "claim_type": "Artisan Wage / Nonpayment",
+   "quantification": "Archival Estimate (Craft Claim)"
+  },
+  {
+   "claim_id": 37,
+   "decree_id": 41,
+   "amount_gurus": 410,
+   "amount_akce": 0,
+   "normalized_gurus": 410,
+   "claim_type": "Commercial Debt Dispute",
+   "quantification": "Archival Estimate (Port Trade)"
+  },
+  {
+   "claim_id": 38,
+   "decree_id": 42,
+   "amount_gurus": 520,
+   "amount_akce": 0,
+   "normalized_gurus": 520,
+   "claim_type": "Extortion from Town & Naib",
+   "quantification": "Archival Estimate (Kaza Grievance)"
+  },
+  {
+   "claim_id": 39,
+   "decree_id": 43,
+   "amount_gurus": 490,
+   "amount_akce": 0,
+   "normalized_gurus": 490,
+   "claim_type": "Extortion from Subjects",
+   "quantification": "Archival Estimate (Kaza Grievance)"
+  },
+  {
+   "claim_id": 40,
+   "decree_id": 44,
+   "amount_gurus": 680,
+   "amount_akce": 0,
+   "normalized_gurus": 680,
+   "claim_type": "Confiscation of Kadis' Property",
+   "quantification": "Archival Estimate (Official Claim)"
+  },
+  {
+   "claim_id": 41,
+   "decree_id": 45,
+   "amount_gurus": 240,
+   "amount_akce": 0,
+   "normalized_gurus": 240,
+   "claim_type": "Nonpayment to Legal Guardian",
+   "quantification": "Archival Estimate (Guardianship)"
+  },
+  {
+   "claim_id": 42,
+   "decree_id": 46,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Appointment / Office Confirmation",
+   "quantification": "Non-Monetary"
+  },
+  {
+   "claim_id": 43,
+   "decree_id": 47,
+   "amount_gurus": 560,
+   "amount_akce": 0,
+   "normalized_gurus": 560,
+   "claim_type": "Extortion (Hamid–Hoyran)",
+   "quantification": "Archival Estimate (Kaza Grievance)"
+  },
+  {
+   "claim_id": 44,
+   "decree_id": 48,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Frontier Appointment",
+   "quantification": "Non-Monetary"
+  },
+  {
+   "claim_id": 45,
+   "decree_id": 49,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Waqf Trustee Appointment",
+   "quantification": "Non-Monetary"
+  },
+  {
+   "claim_id": 46,
+   "decree_id": 50,
+   "amount_gurus": 0,
+   "amount_akce": 0,
+   "normalized_gurus": 0,
+   "claim_type": "Resettlement & Tax Relief",
+   "quantification": "Unquantified in Summary"
+  },
+  {
+   "claim_id": 47,
+   "decree_id": 51,
+   "amount_gurus": 0,
+   "amount_akce": 1200,
+   "normalized_gurus": 15,
+   "claim_type": "Mosque Endowment Property",
+   "quantification": "Archival Estimate (Waqf Stipend)"
+  },
+  {
+   "claim_id": 48,
+   "decree_id": 52,
+   "amount_gurus": 165,
+   "amount_akce": 0,
+   "normalized_gurus": 165,
+   "claim_type": "Artisan Debt (Shield-maker)",
+   "quantification": "Archival Estimate (Craft Claim)"
+  },
+  {
+   "claim_id": 49,
+   "decree_id": 53,
+   "amount_gurus": 430,
+   "amount_akce": 0,
+   "normalized_gurus": 430,
+   "claim_type": "Village Extortion (Rahova)",
+   "quantification": "Archival Estimate (Village Grievance)"
+  },
+  {
+   "claim_id": 50,
+   "decree_id": 54,
+   "amount_gurus": 1120,
+   "amount_akce": 0,
+   "normalized_gurus": 1120,
+   "claim_type": "Collective Creditors' Claim",
+   "quantification": "Archival Estimate (Merchant Debt)"
+  },
+  {
+   "claim_id": 51,
+   "decree_id": 55,
+   "amount_gurus": 0,
+   "amount_akce": 3600,
+   "normalized_gurus": 45,
+   "claim_type": "Waqf Stipend & Property",
+   "quantification": "Archival Estimate (Annual Stipend)"
+  },
+  {
+   "claim_id": 52,
+   "decree_id": 56,
+   "amount_gurus": 470,
+   "amount_akce": 0,
+   "normalized_gurus": 470,
+   "claim_type": "Commander's Debt Claim",
+   "quantification": "Archival Estimate (Garrison Debt)"
+  }
+ ],
+ "admin_hierarchy": [
+  {
+   "hier_id": 1,
+   "decree_id": 1,
+   "eyalet": "Haleb Eyaleti",
+   "sancak": "Haleb / Kilis / Azez",
+   "kaza": "Haleb & Kilis",
+   "karye_or_nefs": "Nefs-i Haleb, Kilis, Azez"
+  },
+  {
+   "hier_id": 2,
+   "decree_id": 2,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Paşa / Çirmen",
+   "kaza": "Edirne & Meğri",
+   "karye_or_nefs": "Mahruse-i Edirne, Meğri"
+  },
+  {
+   "hier_id": 3,
+   "decree_id": 5,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Tırhala / Eğriboz",
+   "kaza": "Yenişehir-i Fenar & İzdin",
+   "karye_or_nefs": "Yenişehir, İzdin"
+  },
+  {
+   "hier_id": 4,
+   "decree_id": 6,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Silistre",
+   "kaza": "Ahyolu",
+   "karye_or_nefs": "Nefs-i Ahyolu"
+  },
+  {
+   "hier_id": 5,
+   "decree_id": 7,
+   "eyalet": "Mora / Rumeli Eyaleti",
+   "sancak": "Mora",
+   "kaza": "Tripoliçe",
+   "karye_or_nefs": "Nefs-i Tripoliçe"
+  },
+  {
+   "hier_id": 6,
+   "decree_id": 8,
+   "eyalet": "Cezayir-i Bahr-i Sefid",
+   "sancak": "Rodos",
+   "kaza": "Rodos",
+   "karye_or_nefs": "Cezire-i Rodos"
+  },
+  {
+   "hier_id": 7,
+   "decree_id": 9,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Aydın",
+   "kaza": "Tire",
+   "karye_or_nefs": "Nefs-i Tire"
+  },
+  {
+   "hier_id": 8,
+   "decree_id": 10,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Aydın",
+   "kaza": "Güzelhisar-ı Aydın",
+   "karye_or_nefs": "Nefs-i Aydın"
+  },
+  {
+   "hier_id": 9,
+   "decree_id": 11,
+   "eyalet": "Trabzon Eyaleti",
+   "sancak": "Trabzon",
+   "kaza": "Trabzon",
+   "karye_or_nefs": "Nefs-i Trabzon"
+  },
+  {
+   "hier_id": 10,
+   "decree_id": 12,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Karahisar-ı Sahib",
+   "kaza": "Karahisar",
+   "karye_or_nefs": "Nefs-i Karahisar"
+  },
+  {
+   "hier_id": 11,
+   "decree_id": 14,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Sultanönü",
+   "kaza": "Eskişehir",
+   "karye_or_nefs": "Nefs-i Eskişehir"
+  },
+  {
+   "hier_id": 12,
+   "decree_id": 15,
+   "eyalet": "Karaman Eyaleti",
+   "sancak": "Aksaray",
+   "kaza": "Aksaray",
+   "karye_or_nefs": "Nefs-i Aksaray"
+  },
+  {
+   "hier_id": 13,
+   "decree_id": 16,
+   "eyalet": "Karaman Eyaleti",
+   "sancak": "Konya",
+   "kaza": "Karapınar (Sultaniye)",
+   "karye_or_nefs": "Karapınar Evkafı"
+  },
+  {
+   "hier_id": 14,
+   "decree_id": 17,
+   "eyalet": "Karaman Eyaleti",
+   "sancak": "Konya",
+   "kaza": "Karapınar (Sultaniye)",
+   "karye_or_nefs": "Karapınar"
+  },
+  {
+   "hier_id": 15,
+   "decree_id": 18,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Kocaeli",
+   "kaza": "İznikmid",
+   "karye_or_nefs": "Nefs-i İznikmid"
+  },
+  {
+   "hier_id": 16,
+   "decree_id": 19,
+   "eyalet": "Cezayir-i Bahr-i Sefid",
+   "sancak": "Biga / Gelibolu",
+   "kaza": "Boğazhisar",
+   "karye_or_nefs": "Kale-i Boğazhisar"
+  },
+  {
+   "hier_id": 17,
+   "decree_id": 20,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Hüdavendigar / Kütahya",
+   "kaza": "Gölbazarı",
+   "karye_or_nefs": "Nefs-i Gölbazarı"
+  },
+  {
+   "hier_id": 18,
+   "decree_id": 21,
+   "eyalet": "Bağdad Eyaleti",
+   "sancak": "Bağdad (Paşa Sancağı)",
+   "kaza": "Bağdad",
+   "karye_or_nefs": "Mahrusa-i Bağdad"
+  },
+  {
+   "hier_id": 19,
+   "decree_id": 22,
+   "eyalet": "İstanbul / Haslar",
+   "sancak": "Haslar",
+   "kaza": "Çekmece",
+   "karye_or_nefs": "Çekmece Çarşısı"
+  },
+  {
+   "hier_id": 20,
+   "decree_id": 23,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Edirne / Paşa",
+   "kaza": "Havas-ı Mahmud Paşa",
+   "karye_or_nefs": "Nefs-i Havsa"
+  },
+  {
+   "hier_id": 21,
+   "decree_id": 24,
+   "eyalet": "İstanbul / Haslar",
+   "sancak": "Dersaadet",
+   "kaza": "Mahrusa-i İstanbul",
+   "karye_or_nefs": "Asitane-i Saadet"
+  },
+  {
+   "hier_id": 22,
+   "decree_id": 25,
+   "eyalet": "Cezayir-i Bahr-i Sefid",
+   "sancak": "Biga / Gelibolu",
+   "kaza": "Boğazhisar",
+   "karye_or_nefs": "Boğazhisar"
+  },
+  {
+   "hier_id": 23,
+   "decree_id": 27,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Sofya (Paşa Sancağı)",
+   "kaza": "Sofya",
+   "karye_or_nefs": "Nefs-i Sofya"
+  },
+  {
+   "hier_id": 24,
+   "decree_id": 28,
+   "eyalet": "Cezayir-i Bahr-i Sefid",
+   "sancak": "Midilli",
+   "kaza": "Midilli",
+   "karye_or_nefs": "Cezire-i Midilli"
+  },
+  {
+   "hier_id": 25,
+   "decree_id": 29,
+   "eyalet": "Karaman Eyaleti",
+   "sancak": "Kayseri",
+   "kaza": "Kayseri",
+   "karye_or_nefs": "Nefs-i Kayseri"
+  },
+  {
+   "hier_id": 26,
+   "decree_id": 30,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Hüdavendigar",
+   "kaza": "Bursa",
+   "karye_or_nefs": "Nefs-i Bursa"
+  },
+  {
+   "hier_id": 27,
+   "decree_id": 31,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Hüdavendigar",
+   "kaza": "Mihaliç",
+   "karye_or_nefs": "Yorgi Kalesi"
+  },
+  {
+   "hier_id": 28,
+   "decree_id": 32,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Paşa / Filibe",
+   "kaza": "Tatarpazarı",
+   "karye_or_nefs": "Nefs-i Tatarpazarı"
+  },
+  {
+   "hier_id": 29,
+   "decree_id": 33,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Hüdavendigar",
+   "kaza": "Bursa",
+   "karye_or_nefs": "Nefs-i Bursa"
+  },
+  {
+   "hier_id": 30,
+   "decree_id": 34,
+   "eyalet": "Haleb Eyaleti",
+   "sancak": "Haleb / Kilis / Azez",
+   "kaza": "Haleb, Kilis, Azez",
+   "karye_or_nefs": "Nefs-i Haleb"
+  },
+  {
+   "hier_id": 31,
+   "decree_id": 35,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Saruhan / Kütahya / Aydın",
+   "kaza": "Menemen, Manisa, Kütahya, Güzelhisar",
+   "karye_or_nefs": "Multi-Kaza Circuit"
+  },
+  {
+   "hier_id": 32,
+   "decree_id": 36,
+   "eyalet": "Cezayir-i Bahr-i Sefid",
+   "sancak": "Biga / Gelibolu",
+   "kaza": "Boğazhisar",
+   "karye_or_nefs": "Boğazhisar İskelesi"
+  },
+  {
+   "hier_id": 33,
+   "decree_id": 37,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Aydın",
+   "kaza": "Tire",
+   "karye_or_nefs": "Nefs-i Tire"
+  },
+  {
+   "hier_id": 34,
+   "decree_id": 38,
+   "eyalet": "İstanbul / Haslar",
+   "sancak": "Üsküdar",
+   "kaza": "Üsküdar",
+   "karye_or_nefs": "Nefs-i Üsküdar"
+  },
+  {
+   "hier_id": 35,
+   "decree_id": 39,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Paşa",
+   "kaza": "Edirne",
+   "karye_or_nefs": "Mahruse-i Edirne"
+  },
+  {
+   "hier_id": 36,
+   "decree_id": 40,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Paşa",
+   "kaza": "Edirne",
+   "karye_or_nefs": "Mahruse-i Edirne"
+  },
+  {
+   "hier_id": 37,
+   "decree_id": 41,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Suğla / İzmir",
+   "kaza": "İzmir",
+   "karye_or_nefs": "Nefs-i İzmir"
+  },
+  {
+   "hier_id": 38,
+   "decree_id": 42,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Sultanönü / Hüdavendigar",
+   "kaza": "Eskişehir & Bilecik",
+   "karye_or_nefs": "Bilecik & Eskişehir"
+  },
+  {
+   "hier_id": 39,
+   "decree_id": 43,
+   "eyalet": "Karaman Eyaleti",
+   "sancak": "Konya",
+   "kaza": "Seydişehir",
+   "karye_or_nefs": "Nefs-i Seydişehir"
+  },
+  {
+   "hier_id": 40,
+   "decree_id": 44,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Kütahya",
+   "kaza": "Çal & Kütahya",
+   "karye_or_nefs": "Çal, Kütahya"
+  },
+  {
+   "hier_id": 41,
+   "decree_id": 45,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Paşa",
+   "kaza": "Edirne",
+   "karye_or_nefs": "Mahruse-i Edirne"
+  },
+  {
+   "hier_id": 42,
+   "decree_id": 46,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Aydın & Hamid & Konya",
+   "kaza": "Sultanhisar, Bozdoğan, Beyşehir…",
+   "karye_or_nefs": "7 Connected Settlements"
+  },
+  {
+   "hier_id": 43,
+   "decree_id": 47,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Hamid",
+   "kaza": "Isparta & Hoyran",
+   "karye_or_nefs": "Nefs-i Hamid, Hoyran"
+  },
+  {
+   "hier_id": 44,
+   "decree_id": 48,
+   "eyalet": "Budin & Bosna Eyaletleri",
+   "sancak": "Sirem / Segedin / İzvornik",
+   "kaza": "Sermin, Segedin, İzvornik",
+   "karye_or_nefs": "Danube–Drina Garrisons"
+  },
+  {
+   "hier_id": 45,
+   "decree_id": 49,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Hüdavendigar",
+   "kaza": "Bursa",
+   "karye_or_nefs": "Nefs-i Bursa"
+  },
+  {
+   "hier_id": 46,
+   "decree_id": 50,
+   "eyalet": "Kars / Erzurum Eyaleti",
+   "sancak": "Kars",
+   "kaza": "Kars",
+   "karye_or_nefs": "Nefs-i Kars"
+  },
+  {
+   "hier_id": 47,
+   "decree_id": 51,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Hüdavendigar",
+   "kaza": "Edincik",
+   "karye_or_nefs": "Nefs-i Edincik"
+  },
+  {
+   "hier_id": 48,
+   "decree_id": 52,
+   "eyalet": "Anadolu Eyaleti",
+   "sancak": "Hüdavendigar",
+   "kaza": "Bursa",
+   "karye_or_nefs": "Nefs-i Bursa"
+  },
+  {
+   "hier_id": 49,
+   "decree_id": 53,
+   "eyalet": "Rumeli Eyaleti",
+   "sancak": "Üsküb",
+   "kaza": "Üsküb",
+   "karye_or_nefs": "Karye-i Rahova"
+  },
+  {
+   "hier_id": 50,
+   "decree_id": 54,
+   "eyalet": "Diyarbekir Eyaleti",
+   "sancak": "Amid (Diyarbekir)",
+   "kaza": "Diyarbekir",
+   "karye_or_nefs": "Nefs-i Diyarbekir"
+  },
+  {
+   "hier_id": 51,
+   "decree_id": 55,
+   "eyalet": "Haleb Eyaleti",
+   "sancak": "Haleb",
+   "kaza": "Haleb",
+   "karye_or_nefs": "Gazi Murad Pasha Waqf"
+  },
+  {
+   "hier_id": 52,
+   "decree_id": 56,
+   "eyalet": "Rakka / Haleb Eyaleti",
+   "sancak": "Rakka & Birecik",
+   "kaza": "Rakka & Birecik",
+   "karye_or_nefs": "Euphrates Crossing"
+  }
+ ],
+ "resolutions": [
+  {
+   "resolution_id": 1,
+   "decree_id": 1,
+   "directive_type": "Men' ve İskân (Protection & Relief)",
+   "directive_summary": "Prevent unlawful exactions in devastated Haleb–Kilis–Azez villages and secure stability.",
+   "target_authority": "Vizier, Kadi, Voivode"
+  },
+  {
+   "resolution_id": 2,
+   "decree_id": 2,
+   "directive_type": "Şer'î İnceleme (Criminal Investigation)",
+   "directive_summary": "Investigate homicide petition of Ayşe Hatun across Edirne and Meğri jurisdictions.",
+   "target_authority": "Kadi & Bostancıbaşı"
+  },
+  {
+   "resolution_id": 3,
+   "decree_id": 5,
+   "directive_type": "Şer'î İnceleme (Land Adjudication)",
+   "directive_summary": "Adjudicate land boundary claim in Yenişehir and İzdin according to Sharia and land registers.",
+   "target_authority": "Mullah & Kadi"
+  },
+  {
+   "resolution_id": 4,
+   "decree_id": 6,
+   "directive_type": "Men' ve Def' (Prohibit Harassment)",
+   "directive_summary": "Protect non-Muslim subject Hristo in Ahyolu from harassment and unlawful interference.",
+   "target_authority": "Kadi of Ahyolu"
+  },
+  {
+   "resolution_id": 5,
+   "decree_id": 7,
+   "directive_type": "Tahsil ve Teftiş (Audit & Recovery)",
+   "directive_summary": "Audit alleged embezzlement in Tripolitsa and recover state funds.",
+   "target_authority": "Vizier & Kadi"
+  },
+  {
+   "resolution_id": 6,
+   "decree_id": 8,
+   "directive_type": "Tahsil ve İade (Debt Enforcement)",
+   "directive_summary": "Verify Mos's claim under Sharia in Rhodes and compel repayment if proven.",
+   "target_authority": "Beg & Kadi"
+  },
+  {
+   "resolution_id": 7,
+   "decree_id": 9,
+   "directive_type": "Tahsil ve Def' (Revenue Protection)",
+   "directive_summary": "Resolve Kenan Pasha's revenue dispute in Tire without unauthorized interference.",
+   "target_authority": "Kadi of Tire"
+  },
+  {
+   "resolution_id": 8,
+   "decree_id": 10,
+   "directive_type": "Teftiş (Official Misconduct Inquiry)",
+   "directive_summary": "Examine misconduct reported by Alaybegi Halil in Aydın sancak.",
+   "target_authority": "Mutasarrif of Aydın"
+  },
+  {
+   "resolution_id": 9,
+   "decree_id": 11,
+   "directive_type": "Men' ve Def' (Taxation Prohibition)",
+   "directive_summary": "Halt illegal taxation reported by Kadi Abdülkerim in Trabzon.",
+   "target_authority": "Beylerbeyi of Trabzon"
+  },
+  {
+   "resolution_id": 10,
+   "decree_id": 12,
+   "directive_type": "İade Emri (Restitution Order)",
+   "directive_summary": "Locate and return fugitive slaves claimed by Janissary petitioner in Karahisar.",
+   "target_authority": "Kadi of Karahisar"
+  },
+  {
+   "resolution_id": 11,
+   "decree_id": 14,
+   "directive_type": "Men' ve Def' (Waqf Protection)",
+   "directive_summary": "Remove encroachment on waqf water channel in Eskişehir.",
+   "target_authority": "Beg & Kadi"
+  },
+  {
+   "resolution_id": 12,
+   "decree_id": 15,
+   "directive_type": "Tahsil Emri (Customary Fee Enforcement)",
+   "directive_summary": "Enforce customary sheep pasturage fee collection in Aksaray.",
+   "target_authority": "Kadi of Aksaray"
+  },
+  {
+   "resolution_id": 13,
+   "decree_id": 16,
+   "directive_type": "Teftiş ve Men' (Trustee Oversight)",
+   "directive_summary": "Investigate oppression by waqf trustee Bekir against Karapınar reaya.",
+   "target_authority": "Kadi & Janissary Serdar"
+  },
+  {
+   "resolution_id": 14,
+   "decree_id": 17,
+   "directive_type": "Tahsil ve İade (Waqf Debt Recovery)",
+   "directive_summary": "Compel Janissaries Sefer and Piyale to repay waqf cash loan.",
+   "target_authority": "Kadi & Janissary Serdar"
+  },
+  {
+   "resolution_id": 15,
+   "decree_id": 18,
+   "directive_type": "İade ve İbtal (Annulment & Restitution)",
+   "directive_summary": "Examine Mümine's claim of fraudulent underpriced sale in İznikmid and restore property.",
+   "target_authority": "Kadi of İznikmid"
+  },
+  {
+   "resolution_id": 16,
+   "decree_id": 19,
+   "directive_type": "İhzâr ve Nakil (Transfer to Capital)",
+   "directive_summary": "Release unlawfully imprisoned gunner from Boğazhisar and transfer to Istanbul.",
+   "target_authority": "Pasha (Garrison Command)"
+  },
+  {
+   "resolution_id": 17,
+   "decree_id": 20,
+   "directive_type": "Teftiş ve Men' (Judicial Oversight)",
+   "directive_summary": "Investigate extortion and illegal fees charged by Kadi Ahmed in Gölbazarı.",
+   "target_authority": "Beylerbeyi & Kadi"
+  },
+  {
+   "resolution_id": 18,
+   "decree_id": 21,
+   "directive_type": "Teyid-i Kanun (Customs Rate Confirmation)",
+   "directive_summary": "Authorize collection of customary 4 akçe per unit customs fee in Baghdad.",
+   "target_authority": "Pasha, Kadi, Defterdar"
+  },
+  {
+   "resolution_id": 19,
+   "decree_id": 22,
+   "directive_type": "Men' ve Te'dib (Market Inspector Check)",
+   "directive_summary": "Stop assault and illegal levies by market inspector against Çekmece bakers and shops.",
+   "target_authority": "Kadi of Haslar"
+  },
+  {
+   "resolution_id": 20,
+   "decree_id": 23,
+   "directive_type": "Yetki Tayini (Jurisdictional Clarification)",
+   "directive_summary": "Clarify judicial authority over hariç reaya cases in Havas-ı Mahmud Paşa.",
+   "target_authority": "Kadi of Havsa"
+  },
+  {
+   "resolution_id": 21,
+   "decree_id": 24,
+   "directive_type": "Keşif ve Men' (Urban Boundary Survey)",
+   "directive_summary": "Inspect neighbor construction, drainage damage, and fee extortion in Istanbul.",
+   "target_authority": "Pasha & Molla/Kadi"
+  },
+  {
+   "resolution_id": 22,
+   "decree_id": 25,
+   "directive_type": "Şer'î İnceleme (Mahr & Property Recovery)",
+   "directive_summary": "Enforce payment of Fatma Hatun's unpaid mahr and return seized chattels.",
+   "target_authority": "Pasha, Kadi, Former Kadi"
+  },
+  {
+   "resolution_id": 23,
+   "decree_id": 27,
+   "directive_type": "Tahsil Emri (6,330 Guruş Collection)",
+   "directive_summary": "Collect and reimburse 6,330 guruş in shared campaign loans among Rumeli timar holders.",
+   "target_authority": "Pasha & Kadi of Sofya"
+  },
+  {
+   "resolution_id": 24,
+   "decree_id": 28,
+   "directive_type": "Sevk ve Narh (Cargo Dispatch Order)",
+   "directive_summary": "Sell one ship of soap in Midilli at official rate and dispatch two ships to Istanbul.",
+   "target_authority": "Kadi of Midilli"
+  },
+  {
+   "resolution_id": 25,
+   "decree_id": 29,
+   "directive_type": "Tevcih ve Teyid (Temessük Enforcement)",
+   "directive_summary": "Enforce Ismail's mütesellim appointment in Kayseri via official temessük deed.",
+   "target_authority": "Molla/Kadi & Kadi"
+  },
+  {
+   "resolution_id": 26,
+   "decree_id": 30,
+   "directive_type": "Tahsil ve İade (2,200 Guruş Debt)",
+   "directive_summary": "Compel Osman Beyoğlu Ahmed to settle 2,200 guruş debt owed to Çorbacı Mustafa.",
+   "target_authority": "Molla/Kadi of Bursa"
+  },
+  {
+   "resolution_id": 27,
+   "decree_id": 31,
+   "directive_type": "İskân Emri (Resettlement Order)",
+   "directive_summary": "Confirm resettlement arrangements for inhabitants of Yorgi Castle near Mihaliç.",
+   "target_authority": "Molla/Kadi"
+  },
+  {
+   "resolution_id": 28,
+   "decree_id": 32,
+   "directive_type": "Tahsil ve Te'dib (Tax Compliance)",
+   "directive_summary": "Remove tax obstruction in Tatarpazarı and ensure imperial levy collection.",
+   "target_authority": "Pasha & Kadi"
+  },
+  {
+   "resolution_id": 29,
+   "decree_id": 33,
+   "directive_type": "Şer'î Taksim (Inheritance Division)",
+   "directive_summary": "Adjudicate Ali's inheritance claim in Bursa under Sharia estate rules.",
+   "target_authority": "Kadi of Bursa"
+  },
+  {
+   "resolution_id": 30,
+   "decree_id": 34,
+   "directive_type": "Sevk-i Mühimmât (Troop Supply Order)",
+   "directive_summary": "Expedite troop provisioning across Haleb, Kilis, and Azez for Serdar Hüseyin Paşa.",
+   "target_authority": "Kadis of Haleb, Kilis, Azez"
+  },
+  {
+   "resolution_id": 31,
+   "decree_id": 35,
+   "directive_type": "Tahsil Emri (Revenue Collection)",
+   "directive_summary": "Facilitate authorized revenue collection across Menemen, Manisa, Kütahya, Güzelhisar.",
+   "target_authority": "Four Regional Kadis"
+  },
+  {
+   "resolution_id": 32,
+   "decree_id": 36,
+   "directive_type": "İade Emri (Confiscation Reversal)",
+   "directive_summary": "Investigate confiscation claim of Ahmed Kapudan at Boğazhisar and restore property.",
+   "target_authority": "Vizier"
+  },
+  {
+   "resolution_id": 33,
+   "decree_id": 37,
+   "directive_type": "Men' ve Def' (Prohibit Extortion)",
+   "directive_summary": "Protect notables and jurists of Tire from unlawful exactions.",
+   "target_authority": "Molla/Kadi of Tire"
+  },
+  {
+   "resolution_id": 34,
+   "decree_id": 38,
+   "directive_type": "Tescil ve İcrâ (Property Registration)",
+   "directive_summary": "Finalize Vizier Mehmed Pasha's property purchase in Üsküdar legally.",
+   "target_authority": "Kadi of Üsküdar"
+  },
+  {
+   "resolution_id": 35,
+   "decree_id": 39,
+   "directive_type": "Tahsil Emri (Wage / Debt Recovery)",
+   "directive_summary": "Ensure payment owed to Master Mehmed in Edirne upon verification.",
+   "target_authority": "Kadi of Edirne"
+  },
+  {
+   "resolution_id": 36,
+   "decree_id": 40,
+   "directive_type": "Tahsil Emri (Wage / Debt Recovery)",
+   "directive_summary": "Enforce Master Mehmed's nonpayment claim with Bostancıbaşı support in Edirne.",
+   "target_authority": "Kadi & Bostancıbaşı"
+  },
+  {
+   "resolution_id": 37,
+   "decree_id": 41,
+   "directive_type": "Tahsil Emri (Debt Adjudication)",
+   "directive_summary": "Adjudicate Mustafa's debt dispute in İzmir port jurisdiction.",
+   "target_authority": "Viziers & Kadi of İzmir"
+  },
+  {
+   "resolution_id": 38,
+   "decree_id": 42,
+   "directive_type": "Men' ve Def' (Prohibit Extortion)",
+   "directive_summary": "Halt extortion suffered by Bilecik deputy judge and subjects across Eskişehir–Bilecik.",
+   "target_authority": "Kadis of Eskişehir & Bilecik"
+  },
+  {
+   "resolution_id": 39,
+   "decree_id": 43,
+   "directive_type": "Men' ve Def' (Prohibit Extortion)",
+   "directive_summary": "Protect Seydişehir inhabitants against unlawful local fees and extortion.",
+   "target_authority": "Kadi of Seydişehir"
+  },
+  {
+   "resolution_id": 40,
+   "decree_id": 44,
+   "directive_type": "İade ve Teftiş (Confiscation Inquiry)",
+   "directive_summary": "Investigate confiscation suffered by former Çal Kadi Mevlana Halil and colleagues.",
+   "target_authority": "Pasha & Kadi"
+  },
+  {
+   "resolution_id": 41,
+   "decree_id": 45,
+   "directive_type": "Tahsil Emri (Guardianship Payment)",
+   "directive_summary": "Recover unpaid sums claimed by legal guardian Mehmed in Edirne.",
+   "target_authority": "Kadi & Bostancıbaşı"
+  },
+  {
+   "resolution_id": 42,
+   "decree_id": 46,
+   "directive_type": "Tevcih ve Teyid (Office Confirmation)",
+   "directive_summary": "Confirm Janissary Mehmed's appointment across 7 Aydın–Denizli–Konya kazas.",
+   "target_authority": "Seven Regional Kadis"
+  },
+  {
+   "resolution_id": 43,
+   "decree_id": 47,
+   "directive_type": "Men' ve Def' (Prohibit Extortion)",
+   "directive_summary": "Check extortion reported by Hoyran Naib Mevlana Mustafa and local subjects.",
+   "target_authority": "Sanjakbegh/Pasha & Kadi"
+  },
+  {
+   "resolution_id": 44,
+   "decree_id": 48,
+   "directive_type": "Tevcih ve Teyid (Frontier Appointment)",
+   "directive_summary": "Enforce Janissary Hasan's appointment across Sermin, Segedin, and İzvornik.",
+   "target_authority": "Three Frontier Kadis"
+  },
+  {
+   "resolution_id": 45,
+   "decree_id": 49,
+   "directive_type": "Tevcih ve Teyid (Trustee Appointment)",
+   "directive_summary": "Confirm Mustafa's trustee appointment in Bursa.",
+   "target_authority": "Kadi of Bursa"
+  },
+  {
+   "resolution_id": 46,
+   "decree_id": 50,
+   "directive_type": "İskân Emri (Province Resettlement)",
+   "directive_summary": "Oversee resettlement and protection of Kars province subjects.",
+   "target_authority": "Pasha, Kadi, Officer"
+  },
+  {
+   "resolution_id": 47,
+   "decree_id": 51,
+   "directive_type": "Waqf Protection (Endowment Audit)",
+   "directive_summary": "Safeguard mosque preachers' and muezzins' endowment property in Edincik.",
+   "target_authority": "Kadi of Edincik"
+  },
+  {
+   "resolution_id": 48,
+   "decree_id": 52,
+   "directive_type": "Tahsil Emri (Artisan Debt Recovery)",
+   "directive_summary": "Verify and collect debt owed to shield-maker artisan in Bursa.",
+   "target_authority": "Kadi of Bursa"
+  },
+  {
+   "resolution_id": 49,
+   "decree_id": 53,
+   "directive_type": "Men' ve Def' (Village Protection)",
+   "directive_summary": "Stop extortion against inhabitants of Rahova village in Üsküb sancak.",
+   "target_authority": "Kadi & Sanjakbegh/Pasha"
+  },
+  {
+   "resolution_id": 50,
+   "decree_id": 54,
+   "directive_type": "Tahsil Emri (Creditors' Settlement)",
+   "directive_summary": "Adjudicate collective creditors' debt claims in Diyarbekir.",
+   "target_authority": "Pasha & Kadi"
+  },
+  {
+   "resolution_id": 51,
+   "decree_id": 55,
+   "directive_type": "Waqf Protection (Stipend Enforcement)",
+   "directive_summary": "Protect property and stipends of Gazi Murad Pasha Waqf beneficiaries in Haleb.",
+   "target_authority": "Pasha & Kadi"
+  },
+  {
+   "resolution_id": 52,
+   "decree_id": 56,
+   "directive_type": "Tahsil Emri (Debt Enforcement)",
+   "directive_summary": "Recover debt claimed by Commander Ramazan across Rakka and Birecik.",
+   "target_authority": "Kadi & Pasha"
+  }
+ ]
+}

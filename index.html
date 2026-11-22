@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atik Şikâyet Defteri no. 1, Muharrem 1059</title>
+<meta name="description" content="Where the Ottoman Imperial Council sent its answers to petitions in Muharrem 1059 (January to February 1649): a map of the decrees in Atik Şikâyet Defteri no. 1.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Alegreya+SC:wght@400;500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+/* ---------------------------------------------------------------------------
+   Tokens. White ground, cobalt line, turquoise water: the map carries the colour,
+   everything around it stays ink on paper.
+--------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+  --paper: #fbfcfb;
+  --paper-2: #f1f5f4;
+  --land: #f6f7f3;
+  --sea: #cfe5e3;
+  --sea-ink: #3c7a86;
+  --coast: #2f4f9a;
+  --river: #74aab7;
+  --ink: #1b1d21;
+  --ink-2: #474d58;
+  --ink-3: #6b727d;
+  --rule: #d5dbda;
+  --rule-2: #e7ebea;
+  --cobalt: #2f4f9a;
+  --wash: #e7f1f0;
+  --halo: #ffffff;
+
+  /* Complaint types. Validated for colour-vision separation; shape repeats the encoding. */
+  --c-ext: #b93a26;
+  --c-debt: #3560c8;
+  --c-prop: #5a9a1e;
+  --c-tax: #e0a81a;
+  --c-appt: #9a3f9a;
+  --c-resettle: #19a9b8;
+  --c-other: #7a7f87;
+
+  --serif: 'Alegreya', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --caps: 'Alegreya SC', 'Alegreya', Georgia, serif;
+  --sans: 'Alegreya Sans', 'Gill Sans', 'Trebuchet MS', sans-serif;
+  --arab: 'Amiri', 'Scheherazade New', 'Geeza Pro', serif;
+
+  --bar-h: 52px;
+  --reg-w: 412px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #131b29;
+  --paper-2: #1a2334;
+  --land: #1b2434;
+  --sea: #0e1623;
+  --sea-ink: #6aa9b8;
+  --coast: #6f93d8;
+  --river: #2f6677;
+  --ink: #e8ebf0;
+  --ink-2: #b7bec9;
+  --ink-3: #8b93a0;
+  --rule: #2d394d;
+  --rule-2: #232d3f;
+  --cobalt: #8fb0f0;
+  --wash: #1e2b41;
+  --halo: #1b2434;
+
+  --c-ext: #e86a55;
+  --c-debt: #5b85e8;
+  --c-prop: #5f9a22;
+  --c-tax: #e0a81a;
+  --c-appt: #b565b5;
+  --c-resettle: #35b8c9;
+  --c-other: #9aa1ab;
+}
+
+.k-ext { --c: var(--c-ext); }
+.k-debt { --c: var(--c-debt); }
+.k-prop { --c: var(--c-prop); }
+.k-tax { --c: var(--c-tax); }
+.k-appt { --c: var(--c-appt); }
+.k-resettle { --c: var(--c-resettle); }
+.k-other { --c: var(--c-other); }
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--cobalt); }
+:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 2px; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--paper); padding: 8px 12px; z-index: 2000; }
+.skip:focus { left: 8px; top: 8px; }
+[hidden] { display: none !important; }
+
+.textbtn {
+  background: none; border: 0; padding: 0;
+  color: var(--cobalt); text-decoration: underline; text-underline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Top bar
+--------------------------------------------------------------------------- */
+.bar {
+  height: var(--bar-h);
+  display: flex; align-items: center; gap: 26px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  position: relative; z-index: 1100;
+}
+.wordmark {
+  font-family: var(--serif); font-size: 21px; font-weight: 500;
+  color: var(--ink); text-decoration: none; white-space: nowrap;
+}
+.wordmark i { font-weight: 400; color: var(--ink-3); }
+.bar nav { display: flex; gap: 2px; margin-right: auto; }
+.bar nav button {
+  position: relative;
+  background: none; border: 0; border-radius: 3px;
+  padding: 6px 10px; font-size: 16.5px; color: var(--ink-2);
+}
+.bar nav button:hover { color: var(--ink); }
+.bar nav button[aria-current="page"] { color: var(--ink); font-weight: 700; }
+.bar nav button[aria-current="page"]::after {
+  content: ""; position: absolute; left: 10px; right: 10px; bottom: -8px;
+  height: 2px; background: var(--ink);
+}
+.tools { display: flex; gap: 8px; align-items: center; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.seg button { background: none; border: 0; padding: 3px 10px; font-size: 14.5px; color: var(--ink-2); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+/* ---------------------------------------------------------------------------
+   Map view: the plate and the register column
+--------------------------------------------------------------------------- */
+#v-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--reg-w);
+  height: calc(100dvh - var(--bar-h));
+}
+.plate { display: grid; grid-template-rows: minmax(0, 1fr) auto; min-width: 0; min-height: 0; }
+.mapwrap { position: relative; min-height: 0; background: var(--land); overflow: hidden; }
+#map { position: absolute; inset: 0; background: var(--land); font: inherit; }
+
+.leaflet-container { background: var(--land); font: inherit; color: var(--ink); }
+.leaflet-tile-pane { filter: grayscale(1) contrast(1.3) brightness(1.02); opacity: .85; }
+[data-theme="dark"] .leaflet-tile-pane { filter: grayscale(1) invert(1) contrast(1.15) brightness(.8); opacity: .5; }
+
+.leaflet-bar { border: 1px solid var(--rule) !important; box-shadow: none !important; border-radius: 4px; overflow: hidden; }
+.leaflet-bar a, .leaflet-bar button {
+  display: block; width: 30px; height: 30px; line-height: 28px; padding: 0;
+  background: var(--paper); color: var(--ink); border: 0; border-bottom: 1px solid var(--rule);
+  font-size: 18px; text-align: center;
+}
+.leaflet-bar a:last-child, .leaflet-bar button:last-child { border-bottom: 0; }
+.leaflet-bar a:hover, .leaflet-bar button:hover { background: var(--paper-2); color: var(--ink); }
+.leaflet-bar.fitbar { margin-top: 8px; }
+.leaflet-bar .fit { width: auto; padding: 0 10px; font-size: 14.5px; font-family: var(--sans); }
+.leaflet-control-attribution {
+  background: color-mix(in srgb, var(--paper) 82%, transparent) !important;
+  color: var(--ink-3) !important; font-size: 11.5px; padding: 1px 6px !important;
+}
+.leaflet-control-attribution a { color: var(--ink-2) !important; }
+.leaflet-control-scale-line {
+  border-color: var(--ink-2) !important; background: transparent !important;
+  color: var(--ink-2) !important; font-size: 11.5px; text-shadow: none !important;
+}
+
+/* Lettering on the map */
+.lt span {
+  position: absolute; left: 0; top: 0; white-space: nowrap;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  font-family: var(--serif); line-height: 1;
+}
+.lt-sea span { font-style: italic; letter-spacing: .3em; color: var(--sea-ink); font-size: calc(17px * var(--zk, 1) * var(--s, 1)); }
+.lt-region span { font-family: var(--caps); letter-spacing: .34em; color: var(--ink-2); opacity: .8; font-size: calc(15.5px * var(--zk, 1) * var(--s, 1)); }
+.lt-river span { font-style: italic; letter-spacing: .08em; color: var(--sea-ink); font-size: calc(12.5px * var(--zk, 1)); }
+.lt-ring span { font-family: var(--sans); font-size: 12px; color: var(--ink-3); letter-spacing: .02em; }
+
+.pl span {
+  position: absolute; white-space: nowrap;
+  font: italic 500 14.5px/1 var(--serif); color: var(--ink);
+  text-shadow: 0 0 2px var(--land), 0 0 2px var(--land), 0 0 3px var(--land), 0 0 3px var(--land);
+}
+.pl.em span { font-weight: 700; font-size: 15.5px; }
+
+/* Lines */
+.arc { stroke: var(--cobalt); stroke-opacity: .3; fill: none; }
+.arc.quiet { stroke-opacity: .13; }
+.arc.sel { stroke: var(--c); stroke-opacity: 1; stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: draw .7s ease-out forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.ring-line { stroke: var(--ink-3); stroke-opacity: .5; stroke-dasharray: 1 5; stroke-linecap: round; fill: none; }
+
+/* Symbols: colour and shape both say the complaint type */
+.g { display: block; overflow: visible; }
+.g > * { fill: var(--c); stroke: var(--halo); stroke-width: 2.4; paint-order: stroke fill; stroke-linejoin: round; }
+.g > .ringh { fill: none; stroke: var(--halo); stroke-width: 5.6; }
+.g > .ring { fill: none; stroke: var(--c); stroke-width: 2.8; }
+
+.mk { transition: opacity .15s; }
+.mk .g { width: 20px; height: 20px; filter: drop-shadow(0 0 .7px rgba(0, 0, 0, .6)); transition: transform .15s; }
+.mk.dim { opacity: .3; }
+.mk.hl .g { transform: scale(1.35); }
+.mk.sel .g { transform: scale(1.5); }
+.mk.sel::after {
+  content: ""; position: absolute; inset: -7px; border-radius: 50%;
+  border: 1.5px solid var(--ink);
+}
+.origin { color: var(--ink); }
+.origin svg { display: block; overflow: visible; }
+.origin svg path { fill: var(--ink); stroke: var(--land); stroke-width: 1.4; paint-order: stroke; }
+.origin-label span {
+  position: absolute; white-space: nowrap; left: 0; top: 0;
+  font: 700 15.5px/1.05 var(--serif); color: var(--ink);
+  text-shadow: 0 0 2px var(--land), 0 0 2px var(--land), 0 0 3px var(--land);
+}
+.origin-label span i { display: block; font-weight: 400; font-size: 13.5px; color: var(--ink-2); }
+
+.leaflet-tooltip.tt, .tip {
+  background: var(--ink); color: var(--paper);
+  border: 0; border-radius: 3px; box-shadow: none;
+  padding: 6px 9px; font: 14.5px/1.3 var(--sans); white-space: normal; max-width: 260px;
+}
+.leaflet-tooltip.tt::before { border-top-color: var(--ink); }
+.tt b, .tip b { font-weight: 700; }
+.tt span, .tip span { display: block; opacity: .82; }
+.tip { position: fixed; z-index: 3000; pointer-events: none; }
+
+/* Cartouche: the map's title block */
+.cartouche {
+  position: absolute; z-index: 500; top: 18px; right: 18px;
+  width: min(372px, calc(100% - 100px));
+  padding: 12px 18px 13px;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--ink); outline-offset: 3px;
+}
+.ct-ar { font-family: var(--arab); font-size: 33px; line-height: 1.25; margin: 0 0 2px; color: var(--ink); }
+.ct-line { font: 500 20px/1.22 var(--serif); margin: 0; text-wrap: balance; }
+.ct-sub { margin: 5px 0 0; font-size: 15px; color: var(--ink-2); }
+.ct-clear { margin-top: 6px; font-size: 15px; }
+
+/* The plate's bottom margin holds the legend (which is also the filter) and the register strip */
+.margin { border-top: 1px solid var(--rule); background: var(--paper); padding: 7px 16px 9px; }
+.legend { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 4px; margin-bottom: 7px; }
+.legend h2 { font: 500 16px/1.2 var(--serif); margin: 0 8px 0 0; }
+.legend ul { display: contents; }
+.legend li { list-style: none; }
+.legend li button {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: none; border: 1px solid transparent; border-radius: 999px; padding: 1px 9px 2px 6px;
+  font-size: 15.5px; white-space: nowrap;
+}
+.legend li button:hover { background: var(--wash); }
+.legend li button[aria-pressed="true"] { border-color: var(--ink); }
+.legend .n { color: var(--ink-3); font-variant-numeric: lining-nums tabular-nums; }
+.legend.filtered li button[aria-pressed="false"] { opacity: .45; }
+.legend .g { width: 16px; height: 16px; flex: none; }
+.legend .foot { margin: 0 0 0 8px; font-size: 15px; }
+
+/* The register strip: every entry in the order it stands in the register */
+.strip-head { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; color: var(--ink-2); margin-bottom: 4px; }
+.strip-head b { font: 500 15px var(--serif); color: var(--ink); }
+.strip-cells { display: flex; gap: 2px; height: 18px; }
+.strip-cells > * { flex: 1 1 0; min-width: 0; border: 0; padding: 0; border-radius: 2px; }
+.strip-cells button { background: var(--c); }
+.strip-cells button.off { opacity: .18; }
+.strip-cells button.sel { outline: 2px solid var(--ink); outline-offset: 1px; position: relative; z-index: 1; }
+.strip-cells .gap { background: none; border: 1px dashed var(--ink-3); opacity: .55; }
+.strip-ticks { display: flex; gap: 2px; height: 15px; font-size: 12.5px; color: var(--ink-3); font-variant-numeric: lining-nums; }
+.strip-ticks span { flex: 1 1 0; min-width: 0; text-align: center; overflow: visible; white-space: nowrap; }
+
+/* Register column */
+.register {
+  border-left: 1px solid var(--rule); background: var(--paper);
+  display: grid; grid-template-rows: auto minmax(0, 1fr); min-height: 0;
+}
+.reg-head { padding: 13px 18px 11px; border-bottom: 1px solid var(--rule); }
+.reg-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.reg-title h2 { font: 500 23px/1.1 var(--serif); margin: 0; }
+.reg-count { font-size: 15px; color: var(--ink-2); font-variant-numeric: lining-nums; }
+.search {
+  width: 100%; margin-top: 9px; padding: 6px 10px;
+  border: 1px solid var(--rule); border-radius: 4px; background: var(--paper);
+}
+.search::placeholder { color: var(--ink-3); }
+.kinds { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.chip {
+  border: 1px solid var(--rule); background: none; border-radius: 999px;
+  padding: 1px 11px 2px; font-size: 15px; color: var(--ink-2); font-variant-numeric: lining-nums;
+}
+.chip:hover { border-color: var(--ink-3); }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+.reg-list { overflow: auto; margin: 0; padding: 0; list-style: none; overscroll-behavior: contain; }
+.entry { border-bottom: 1px solid var(--rule-2); }
+.entry > button {
+  display: grid; grid-template-columns: 42px minmax(0, 1fr) 18px; gap: 0 10px;
+  width: 100%; text-align: left; background: none; border: 0;
+  padding: 9px 16px 10px 8px;
+}
+.entry > button:hover { background: var(--paper-2); }
+.entry .no { font: 400 25px/1 var(--serif); text-align: right; color: var(--ink-2); padding-top: 1px; }
+.entry .body { display: block; min-width: 0; }
+.entry .where { display: block; font: italic 500 18.5px/1.2 var(--serif); }
+.entry .who { display: block; font-size: 16px; margin-top: 1px; }
+.entry .what {
+  font-size: 15px; color: var(--ink-2); margin-top: 1px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.entry .gl { padding-top: 5px; }
+.entry .gl .g { width: 16px; height: 16px; }
+.entry.sel { background: var(--wash); }
+.entry.sel > button { box-shadow: inset 3px 0 0 var(--c); }
+.entry.sel > button:hover { background: none; }
+.entry.sel .no { color: var(--ink); }
+.entry.sel .what { display: block; }
+
+.kunye { padding: 0 18px 15px 60px; }
+.kunye dl { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 5px 10px; margin: 0; font-size: 15.5px; }
+.kunye dt { color: var(--ink-3); }
+.kunye dd { margin: 0; min-width: 0; }
+.kunye dd small { display: block; font-size: 14.5px; color: var(--ink-2); }
+.kunye .typ { display: inline-flex; align-items: center; gap: 7px; }
+.kunye .typ .g { width: 15px; height: 15px; }
+.kunye-actions { margin-top: 10px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 15px; }
+.interp {
+  margin-top: 11px; padding: 8px 11px 10px;
+  border: 1px dashed var(--ink-3); border-radius: 3px;
+}
+.interp h3 { font: 500 16px/1.2 var(--serif); margin: 0; }
+.interp p { margin: 2px 0 8px; font-size: 14.5px; color: var(--ink-2); }
+.empty { padding: 26px 18px; color: var(--ink-2); }
+.empty p { margin: 0 0 8px; }
+
+/* ---------------------------------------------------------------------------
+   Reading views: patterns, data, method
+--------------------------------------------------------------------------- */
+.page { max-width: 1120px; margin: 0 auto; padding: 30px 28px 70px; }
+.page h1 { font: 500 34px/1.12 var(--serif); margin: 0 0 8px; text-wrap: balance; }
+.page .lede { font-size: 18px; color: var(--ink-2); max-width: 68ch; margin: 0 0 6px; }
+.page .scope { font-size: 15.5px; color: var(--ink-2); margin: 0 0 26px; }
+.page h2 { font: 500 23px/1.2 var(--serif); margin: 0 0 3px; }
+.page h3 { font: 500 18px/1.25 var(--serif); margin: 18px 0 4px; }
+.page section { margin-top: 34px; }
+.page .note { font-size: 15px; color: var(--ink-2); max-width: 74ch; margin: 2px 0 12px; }
+.cols { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 44px; }
+
+.swarm { width: 100%; height: auto; display: block; overflow: visible; }
+.swarm .axis { stroke: var(--rule); stroke-width: 1; }
+.swarm .tick { fill: var(--ink-3); font: 13px var(--sans); }
+.swarm .lab { fill: var(--ink); font: italic 500 14px var(--serif); }
+.swarm .med { stroke: var(--ink); stroke-width: 1; }
+.swarm .medlab { fill: var(--ink); font: 14px var(--sans); }
+.swarm .pt { cursor: pointer; }
+.swarm .pt .g { overflow: visible; }
+
+table.matrix, table.grid { border-collapse: collapse; width: 100%; font-size: 15.5px; font-variant-numeric: lining-nums tabular-nums; }
+table.matrix th, table.matrix td { padding: 6px 8px; border-bottom: 1px solid var(--rule-2); text-align: right; }
+table.matrix thead th { font-weight: 500; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+table.matrix th[scope="row"] { text-align: left; font-weight: 400; }
+table.matrix th[scope="row"] span { display: inline-flex; align-items: center; gap: 8px; }
+table.matrix th[scope="row"] .g { width: 15px; height: 15px; }
+table.matrix td.cell { width: 76px; }
+table.matrix td.cell i { display: block; font-style: normal; border-radius: 3px; padding: 1px 8px; background: color-mix(in srgb, var(--cobalt) calc(var(--w) * 1%), transparent); }
+table.matrix td.cell i.hi { color: #fff; }
+[data-theme="dark"] table.matrix td.cell i.hi { color: #0e1623; }
+table.matrix tfoot td, table.matrix tfoot th { font-weight: 700; border-bottom: 0; border-top: 1px solid var(--rule); }
+
+.bars { display: grid; grid-template-columns: max-content minmax(0, 1fr) max-content; gap: 5px 10px; align-items: center; font-size: 15.5px; }
+.bars .track { height: 14px; }
+.bars .fill { height: 100%; background: var(--cobalt); border-radius: 0 4px 4px 0; min-width: 2px; }
+.bars .v { font-variant-numeric: lining-nums tabular-nums; color: var(--ink-2); }
+
+.amounts { margin: 6px 0 0; padding: 0; list-style: none; font-size: 16px; }
+.amounts li { padding: 5px 0; border-bottom: 1px solid var(--rule-2); display: flex; gap: 14px; }
+.amounts b { font: 500 17px var(--serif); min-width: 150px; font-variant-numeric: lining-nums; }
+
+/* Data view */
+.datawrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 30px; align-items: start; }
+.tablelist h3 { margin: 0 0 4px; font: 500 17px var(--serif); }
+.tablelist h3 + ul { margin-bottom: 18px; }
+.tablelist ul { list-style: none; margin: 0; padding: 0; }
+.tablelist button {
+  display: flex; justify-content: space-between; gap: 10px; width: 100%;
+  background: none; border: 0; border-radius: 3px; padding: 4px 8px; text-align: left; font-size: 15.5px;
+}
+.tablelist button:hover { background: var(--paper-2); }
+.tablelist button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.tablelist button span:last-child { font-variant-numeric: lining-nums tabular-nums; opacity: .7; }
+.tablelist .side-note { font-size: 14.5px; color: var(--ink-2); margin: 0 0 6px; }
+.tablehead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+.tablehead h2 { font: 500 21px var(--serif); margin: 0; }
+.tablehead .acts { display: flex; gap: 16px; font-size: 15px; }
+.warn { border: 1px dashed var(--ink-3); border-radius: 3px; padding: 8px 12px; font-size: 15px; color: var(--ink-2); margin: 0 0 10px; max-width: 80ch; }
+.scroll { overflow: auto; max-height: calc(100dvh - 270px); border: 1px solid var(--rule); }
+table.grid th, table.grid td { padding: 5px 10px; border-bottom: 1px solid var(--rule-2); text-align: left; vertical-align: top; white-space: nowrap; }
+table.grid td.wrap { white-space: normal; min-width: 260px; }
+table.grid th { position: sticky; top: 0; background: var(--paper-2); font-weight: 500; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+table.grid td.num { text-align: right; }
+
+/* Method view */
+.prose > * { max-width: 72ch; }
+.prose p, .prose li { font-size: 17px; line-height: 1.55; }
+.prose p { margin: 0 0 10px; }
+.prose ul { margin: 0 0 10px; padding-left: 20px; }
+.prose h2 { margin-top: 30px; }
+.prose table { border-collapse: collapse; font-size: 15.5px; margin: 8px 0 12px; width: 100%; }
+.prose th, .prose td { text-align: left; padding: 5px 10px 5px 0; border-bottom: 1px solid var(--rule-2); vertical-align: top; }
+.prose th { font-weight: 500; color: var(--ink-2); }
+
+.loaderr { margin: 40px auto; max-width: 60ch; padding: 0 20px; font-size: 17px; }
+
+@media (max-width: 1360px) {
+  .cartouche { width: min(318px, calc(100% - 100px)); padding: 10px 15px 11px; }
+  .ct-ar { font-size: 28px; }
+  .ct-line { font-size: 18px; }
+  .ct-sub { font-size: 14.5px; }
+}
+
+/* ---------------------------------------------------------------------------
+   Narrow screens: the plate stacks above the register
+--------------------------------------------------------------------------- */
+@media (max-width: 1020px) {
+  .bar { gap: 12px; padding: 0 12px; }
+  .wordmark { font-size: 18px; }
+  .wordmark i { display: none; }
+  .bar nav button { padding: 6px 7px; font-size: 15.5px; }
+  #v-map { display: block; height: auto; }
+  .plate { display: block; }
+  .mapwrap { height: 68dvh; min-height: 420px; }
+  .cartouche { top: 12px; right: 12px; width: min(300px, calc(100% - 70px)); padding: 9px 13px 10px; }
+  .ct-ar { font-size: 25px; }
+  .ct-line { font-size: 17px; }
+  .margin { padding: 8px 12px 10px; }
+  .legend h2 { flex-basis: 100%; }
+  .register { border-left: 0; border-top: 1px solid var(--rule); display: block; }
+  .reg-list { overflow: visible; }
+  .cols, .datawrap { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .page { padding: 22px 16px 60px; }
+  .page h1 { font-size: 28px; }
+}
+@media (max-width: 640px) {
+  .wordmark { display: none; }
+  .bar { height: auto; flex-wrap: wrap; gap: 2px 8px; padding: 6px 10px 8px; }
+  .bar nav { margin-right: 0; flex: 1 1 100%; }
+  .bar nav button[aria-current="page"]::after { bottom: 1px; }
+  .tools { margin-left: 2px; }
+  .cartouche { width: min(250px, calc(100% - 64px)); }
+  .ct-ar { font-size: 22px; }
+  .ct-line { font-size: 15.5px; }
+  .ct-sub { font-size: 13.5px; }
+  .kunye { padding-left: 18px; }
+  .strip-head span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arc.sel { animation: none; stroke-dasharray: none; }
+  .mk, .mk .g { transition: none; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
+
+<header class="bar">
+  <a class="wordmark" href="#map">Atik Şikâyet Defteri <i>no. 1</i></a>
+  <nav id="nav" aria-label="Views">
+    <button type="button" data-view="map" data-t="nav.map">Map</button>
+    <button type="button" data-view="patterns" data-t="nav.patterns">Patterns</button>
+    <button type="button" data-view="data" data-t="nav.data">Data</button>
+    <button type="button" data-view="method" data-t="nav.method">Method</button>
+  </nav>
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Language">
+      <button type="button" data-lang="en" lang="en">English</button>
+      <button type="button" data-lang="tr" lang="tr">Türkçe</button>
+    </div>
+    <div class="seg" role="group" aria-label="Theme">
+      <button type="button" data-theme-set="light" data-t="theme.light">Light</button>
+      <button type="button" data-theme-set="dark" data-t="theme.dark">Dark</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section id="v-map" class="view">
+    <div class="plate">
+      <div class="mapwrap">
+        <div id="map" role="region" aria-label="Map"></div>
+        <div class="cartouche">
+          <p class="ct-ar" lang="ota" dir="rtl">شکایت دفتری</p>
+          <p class="ct-line" id="ct-line"></p>
+          <p class="ct-sub" id="ct-sub"></p>
+          <p class="ct-clear" id="ct-clear" hidden><button type="button" class="textbtn" data-act="clear" data-t="clear">Clear filters</button></p>
+        </div>
+      </div>
+      <div class="margin">
+        <div class="legend" id="legend"></div>
+        <div class="strip" id="strip"></div>
+      </div>
+    </div>
+
+    <aside class="register" aria-labelledby="reg-h">
+      <div class="reg-head">
+        <div class="reg-title">
+          <h2 id="reg-h" data-t="reg.title">Register</h2>
+          <span class="reg-count" id="reg-count" aria-live="polite"></span>
+        </div>
+        <input class="search" id="q" type="search" autocomplete="off">
+        <div class="kinds" id="kinds" role="group"></div>
+      </div>
+      <ol class="reg-list" id="list"></ol>
+    </aside>
+  </section>
+
+  <section id="v-patterns" class="view" hidden><div class="page" id="patterns"></div></section>
+  <section id="v-data" class="view" hidden><div class="page" id="data"></div></section>
+  <section id="v-method" class="view" hidden><div class="page prose" id="method"></div></section>
+</main>
+
+<div class="tip" id="tip" role="tooltip" hidden></div>
+<noscript><p style="padding:24px;font-size:18px">This page draws a map from data files and needs JavaScript. The data itself is in dashboard_data.json.</p></noscript>
+
+<script>
+(() => {
+'use strict';
+
+/* ===========================================================================
+   1. Constants
+=========================================================================== */
+
+// Place of issue. The Imperial Council is taken to sit in Istanbul.
+const ORIGIN = { lat: 41.0082, lng: 28.9784 };
+
+// Complaint types. Colour and shape are fixed per type and never reassigned.
+const CATS = [
+  { key: 'Extortion & Misconduct',      k: 'ext',      shape: 'circle',  en: 'Extortion & misconduct', tr: 'Zulüm ve suistimal' },
+  { key: 'Debt & Financial Disputes',   k: 'debt',     shape: 'square',  en: 'Debt & finance',         tr: 'Borç ve alacak' },
+  { key: 'Property & Land Disputes',    k: 'prop',     shape: 'tri',     en: 'Property & land',        tr: 'Mülk ve arazi' },
+  { key: 'Taxation & Fiscal Revenues',  k: 'tax',      shape: 'diamond', en: 'Tax & revenue',          tr: 'Vergi ve gelir' },
+  { key: 'Official Appointments',       k: 'appt',     shape: 'plus',    en: 'Appointments',           tr: 'Tayin' },
+  { key: 'Resettlement & Demographics', k: 'resettle', shape: 'trid',    en: 'Resettlement',           tr: 'İskân' },
+  { key: 'Other Civil Matters',         k: 'other',    shape: 'ring',    en: 'Other',                  tr: 'Diğer' }
+];
+const CAT = Object.fromEntries(CATS.map(c => [c.key, c]));
+
+// The page's own classification: first matching keyword in the English complaint summary wins.
+// Kept exactly as in the earlier version of the page so the categories do not shift.
+const RULES = [
+  ['Extortion & Misconduct',      ['extortion', 'oppression', 'harassment', 'imprisonment', 'misconduct', 'confiscation', 'homicide']],
+  ['Debt & Financial Disputes',   ['debt', 'nonpayment', 'loan', 'mahr']],
+  ['Property & Land Disputes',    ['property', 'land', 'encroachment', 'sale', 'real estate', 'water', 'inheritance']],
+  ['Official Appointments',       ['appointment', 'mutasallim']],
+  ['Taxation & Fiscal Revenues',  ['tax', 'revenue', 'fee', 'customs', 'desolation', 'supply']],
+  ['Resettlement & Demographics', ['resettlement', 'runaway', 'jurisdictional']]
+];
+const classify = s => {
+  const t = String(s || '').trim().toLowerCase();
+  for (const [cat, words] of RULES) if (words.some(w => t.includes(w))) return cat;
+  return 'Other Civil Matters';
+};
+
+const KINDS = ['male', 'female', 'group'];
+const HIJRI_MONTHS = { M: 'Muharrem', S: 'Safer', Ra: 'Rebîülevvel', R: 'Rebîülâhir', Ca: 'Cemâziyelevvel', C: 'Cemâziyelâhir', B: 'Receb', 'Ş': 'Şaban', N: 'Ramazan', L: 'Şevval', Za: 'Zilkade', Z: 'Zilhicce' };
+
+const SHAPES = {
+  circle:  '<circle r="5.3"/>',
+  square:  '<rect x="-4.7" y="-4.7" width="9.4" height="9.4" rx=".8"/>',
+  tri:     '<path d="M0-6.1 5.9 4.3H-5.9Z"/>',
+  diamond: '<path d="M0-6.4 6.4 0 0 6.4-6.4 0Z"/>',
+  plus:    '<path d="M-2.1-6.2h4.2v4.1h4.1v4.2h-4.1v4.1h-4.2v-4.1h-4.1v-4.2h4.1z"/>',
+  trid:    '<path d="M0 6.1 5.9-4.3H-5.9Z"/>',
+  ring:    '<circle class="ringh" r="4.3"/><circle class="ring" r="4.3"/>'
+};
+const glyph = shape => `<svg class="g" viewBox="-9 -9 18 18" aria-hidden="true">${SHAPES[shape]}</svg>`;
+
+// Lettering placed by hand for orientation. Period names; no boundaries are implied.
+const LETTERING = [
+  { cls: 'sea', at: [43.25, 34.2], s: 1.2, tr: 'Karadeniz', en: 'Black Sea' },
+  { cls: 'sea', at: [34.0, 27.6], s: 1.2, tr: 'Akdeniz', en: 'Mediterranean Sea' },
+  { cls: 'sea', at: [38.75, 25.15], s: .62, rot: -64, tr: 'Adalar Denizi', en: 'Aegean Sea' },
+  { cls: 'sea', at: [42.9, 16.3], s: .7, rot: 38, tr: 'Venedik Körfezi', en: 'Adriatic Sea' },
+  { cls: 'sea', at: [41.6, 50.6], s: .9, rot: -70, tr: 'Hazar Denizi', en: 'Caspian Sea' },
+  { cls: 'region', at: [43.35, 25.4], s: 1.25, tr: 'Rumeli', en: 'Rumeli' },
+  { cls: 'region', at: [39.35, 32.9], s: 1.25, tr: 'Anadolu', en: 'Anadolu' },
+  { cls: 'region', at: [37.35, 33.2], s: .9, tr: 'Karaman', en: 'Karaman' },
+  { cls: 'region', at: [44.1, 17.7], s: .9, tr: 'Bosna', en: 'Bosna' },
+  { cls: 'region', at: [47.25, 19.0], s: .9, tr: 'Budin', en: 'Budin' },
+  { cls: 'region', at: [46.4, 24.4], s: .85, tr: 'Erdel', en: 'Erdel' },
+  { cls: 'region', at: [44.75, 25.2], s: .85, tr: 'Eflak', en: 'Eflak' },
+  { cls: 'region', at: [47.1, 27.7], s: .85, tr: 'Boğdan', en: 'Boğdan' },
+  { cls: 'region', at: [45.3, 34.3], s: .85, tr: 'Kırım', en: 'Kırım' },
+  { cls: 'region', at: [37.05, 22.1], s: .8, tr: 'Mora', en: 'Mora' },
+  { cls: 'region', at: [34.15, 37.4], s: .9, tr: 'Şam', en: 'Şam' },
+  { cls: 'region', at: [34.4, 43.0], s: .9, tr: 'Irak', en: 'Irak' },
+  { cls: 'region', at: [29.4, 30.6], s: .9, tr: 'Mısır', en: 'Mısır' },
+  { cls: 'region', at: [36.2, 49.0], s: .9, tr: 'Acem', en: 'Acem' },
+  { cls: 'region', at: [42.25, 43.7], s: .8, tr: 'Gürcistan', en: 'Gürcistan' },
+  { cls: 'region', at: [34.85, 33.1], s: .7, tr: 'Kıbrıs', en: 'Kıbrıs' },
+  { cls: 'region', at: [34.85, 24.9], s: .7, tr: 'Girit', en: 'Girit' },
+  { cls: 'river', at: [44.42, 27.0], rot: -6, tr: 'Tuna', en: 'Danube' },
+  { cls: 'river', at: [35.55, 39.75], rot: 28, tr: 'Fırat', en: 'Euphrates' },
+  { cls: 'river', at: [35.6, 43.45], rot: 55, tr: 'Dicle', en: 'Tigris' },
+  { cls: 'river', at: [40.65, 34.55], rot: -20, tr: 'Kızılırmak', en: 'Kızılırmak' }
+];
+const RINGS_KM = [250, 500, 1000, 1500];
+
+// Shaded relief under the map. Optional: set RELIEF to null and the map is drawn from basemap.json alone.
+// This is Esri's hosted World Shaded Relief service; Esri's terms of use apply to it.
+const RELIEF = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}';
+const RELIEF_CREDIT = 'Relief: Esri';
+
+/* ===========================================================================
+   2. Text in both languages
+=========================================================================== */
+const T = {
+  en: {
+    skip: 'Skip to content',
+    'nav.map': 'Map', 'nav.patterns': 'Patterns', 'nav.data': 'Data', 'nav.method': 'Method',
+    'theme.light': 'Light', 'theme.dark': 'Dark',
+    clear: 'Clear filters',
+    'ct.all': '{n} decrees leave the Imperial Council for {p} places.',
+    'ct.some': '{n} of {N} decrees, sent to {p} places.',
+    'ct.none': 'No decree matches these filters.',
+    'ct.sub': '{month} {year}, January to February 1649',
+    'legend.title': 'Complaint type', 'legend.all': 'Show all types',
+    'strip.title': 'Order in the register', 'strip.gap': 'Not coded: {list}', 'strip.gapcell': 'Entry {n}: not coded',
+    'reg.title': 'Register', 'reg.count': 'Showing {n} of {N}', 'reg.search': 'Search a name, place or subject',
+    'kind.male': 'Men', 'kind.female': 'Women', 'kind.group': 'Groups',
+    'kind1.male': 'a man', 'kind1.female': 'a woman', 'kind1.group': 'a group',
+    'empty': 'No decree matches these filters.',
+    unnamed: 'not named',
+    more: '{first} and {n} more',
+    decree: 'Decree',
+    'k.petitioner': 'Petitioner', 'k.subject': 'Complaint', 'k.type': 'Type', 'k.to': 'Addressed to',
+    'k.places': 'Places', 'k.date': 'Date', 'k.typenote': 'assigned by keyword, see Method',
+    km: '{km} km from Istanbul', kmshort: '{km} km',
+    'date.g': 'January to February 1649',
+    showmap: 'Show on the map',
+    'interp.title': 'Interpretive layer, unverified',
+    'interp.note': 'Added later and not yet checked against the register.',
+    'interp.show': 'Show the interpretive layer', 'interp.hide': 'Hide the interpretive layer',
+    'i.accused': 'Accused', 'i.amount': 'Amount', 'i.unit': 'Unit', 'i.directive': 'Directive', 'i.none': 'no sum',
+    fit: 'Whole map', zoomin: 'Zoom in', zoomout: 'Zoom out',
+    origin: 'Istanbul', originsub: 'Imperial Council',
+    'tt.places': '{n} places',
+    'p.h1': 'Who asked the Council for what, and how far the answer travelled',
+    'p.lede': 'Counts from the three tables coded from the register. Nothing here uses the interpretive layer.',
+    'p.scope.all': 'All {N} coded decrees.',
+    'p.scope.some': '{n} of {N} decrees: the filters set on the map apply here.',
+    'p.dist.h': 'Distance from Istanbul',
+    'p.dist.note': 'One mark for each place a decree was sent to, by straight-line distance, not by road. Half of the destinations lie within {med} km.',
+    'p.dist.med': 'median {med} km',
+    'p.who.h': 'Who complains about what',
+    'p.who.note': 'Decrees by complaint type and by the kind of petitioner recorded.',
+    'p.who.type': 'Complaint type', 'p.who.total': 'Total',
+    'p.to.h': 'To whom the decree is written',
+    'p.to.note': '{rows} addressee rows across {n} decrees; {kadi} decrees name at least one kadi. Titles are shown as coded.',
+    'p.to.other': 'Other titles ({n})',
+    'p.spread.note': 'Sent to a single place: {one}. Sent to several: {many}. The widest is decree {id}, written to {max} places.',
+    'p.amt.h': 'Sums stated in the complaint summaries',
+    'p.amt.note': 'Only amounts written in the coded summary are listed. They are not added up: there are too few, and one is a rate.',
+    'p.amt.none': 'No summary in the current selection states a sum.',
+    'd.h1': 'The tables behind the map',
+    'd.lede': 'Three tables are coded from the register. Four more were added later and are kept apart until someone checks them.',
+    'd.src': 'From the register', 'd.int': 'Interpretive layer',
+    'd.warn': 'These four tables were added on top of the three source tables. Until they are checked line by line against the register they count as unverified, and they stay out of every total and chart on this site.',
+    'd.rows': '{n} rows', 'd.dl': 'Download this table (CSV)', 'd.dlall': 'Download one row per decree (CSV)',
+    'd.dlall.note': 'One row per decree from the source tables. Columns from the interpretive layer are included only while that layer is switched on, and carry the prefix unverified_.',
+    'd.t.petitioners': 'Petitioners', 'd.t.locations': 'Places', 'd.t.receivers': 'Addressees',
+    'd.t.defendants': 'Accused', 'd.t.financial_claims': 'Amounts', 'd.t.admin_hierarchy': 'Administrative units', 'd.t.resolutions': 'Directives',
+    'd.filtered': 'Rows for the {n} decrees currently shown.',
+    'err.h': 'The data files did not load.',
+    'err.p': 'This page reads dashboard_data.json and basemap.json from its own folder, so it has to be opened through a web server. From the project folder run "python -m http.server" and open http://localhost:8000, or publish the folder with GitHub Pages.'
+  },
+  tr: {
+    skip: 'İçeriğe geç',
+    'nav.map': 'Harita', 'nav.patterns': 'Örüntüler', 'nav.data': 'Veri', 'nav.method': 'Yöntem',
+    'theme.light': 'Açık', 'theme.dark': 'Koyu',
+    clear: 'Süzgeçleri temizle',
+    'ct.all': 'Divan\'dan {p} yere giden {n} hüküm.',
+    'ct.some': '{N} hükümden {n} hüküm, {p} yere.',
+    'ct.none': 'Bu süzgeçlere uyan hüküm yok.',
+    'ct.sub': '{month} {year}, Ocak-Şubat 1649',
+    'legend.title': 'Şikâyet türü', 'legend.all': 'Bütün türleri göster',
+    'strip.title': 'Defter sırası', 'strip.gap': 'Kodlanmamış: {list}', 'strip.gapcell': '{n} numaralı kayıt: kodlanmamış',
+    'reg.title': 'Defter', 'reg.count': 'Gösterilen: {n} / {N}', 'reg.search': 'Ad, yer veya konu ara',
+    'kind.male': 'Erkek', 'kind.female': 'Kadın', 'kind.group': 'Topluluk',
+    'kind1.male': 'erkek', 'kind1.female': 'kadın', 'kind1.group': 'topluluk',
+    'empty': 'Bu süzgeçlere uyan hüküm yok.',
+    unnamed: 'adı yazılmamış',
+    more: '{first} ve {n} yer daha',
+    decree: 'Hüküm',
+    'k.petitioner': 'Davacı', 'k.subject': 'Şikâyet', 'k.type': 'Tür', 'k.to': 'Muhatap',
+    'k.places': 'Yerler', 'k.date': 'Tarih', 'k.typenote': 'anahtar kelimeyle atandı, bkz. Yöntem',
+    km: 'İstanbul\'a {km} km', kmshort: '{km} km',
+    'date.g': 'Ocak-Şubat 1649',
+    showmap: 'Haritada göster',
+    'interp.title': 'Yorum katmanı, doğrulanmamış',
+    'interp.note': 'Sonradan eklendi, defterle henüz karşılaştırılmadı.',
+    'interp.show': 'Yorum katmanını göster', 'interp.hide': 'Yorum katmanını gizle',
+    'i.accused': 'Şikâyet edilen', 'i.amount': 'Tutar', 'i.unit': 'İdari birim', 'i.directive': 'Karar', 'i.none': 'tutar yok',
+    fit: 'Tüm harita', zoomin: 'Yakınlaş', zoomout: 'Uzaklaş',
+    origin: 'İstanbul', originsub: 'Dîvân-ı Hümâyûn',
+    'tt.places': '{n} yer',
+    'p.h1': 'Divan\'dan kim ne istedi, cevap ne kadar uzağa gitti',
+    'p.lede': 'Defterden kodlanan üç tablodan çıkan sayımlar. Buradaki hiçbir şey yorum katmanını kullanmaz.',
+    'p.scope.all': 'Kodlanan {N} hükmün tamamı.',
+    'p.scope.some': '{N} hükümden {n} hüküm: haritada kurulan süzgeçler burada da geçerli.',
+    'p.dist.h': 'İstanbul\'a uzaklık',
+    'p.dist.note': 'Bir hükmün gönderildiği her yer için bir işaret; mesafe kuş uçuşudur, güzergâh değil. Varış yerlerinin yarısı {med} km içinde.',
+    'p.dist.med': 'ortanca {med} km',
+    'p.who.h': 'Kim neden şikâyet ediyor',
+    'p.who.note': 'Şikâyet türüne ve kaydedilen davacı tipine göre hüküm sayısı.',
+    'p.who.type': 'Şikâyet türü', 'p.who.total': 'Toplam',
+    'p.to.h': 'Hüküm kime yazılmış',
+    'p.to.note': '{n} hükümde {rows} muhatap satırı var; en az bir kadıya yazılan hüküm sayısı {kadi}. Unvanlar kodlandığı gibi gösterilir.',
+    'p.to.other': 'Diğer unvanlar ({n})',
+    'p.spread.note': 'Tek yere yazılan hüküm: {one}. Birden çok yere yazılan: {many}. En geniş olanı {id} numaralı hüküm, {max} yere yazılmış.',
+    'p.amt.h': 'Şikâyet özetlerinde geçen tutarlar',
+    'p.amt.note': 'Yalnızca kodlanmış özette yazılı olan tutarlar listelenir. Toplanmaz: sayıları az, biri de birim ücret.',
+    'p.amt.none': 'Seçili hükümlerin özetinde tutar geçmiyor.',
+    'd.h1': 'Haritanın arkasındaki tablolar',
+    'd.lede': 'Üç tablo defterden kodlandı. Dört tablo sonradan eklendi ve biri kontrol edene kadar ayrı tutuluyor.',
+    'd.src': 'Defterden', 'd.int': 'Yorum katmanı',
+    'd.warn': 'Bu dört tablo üç kaynak tablonun üzerine sonradan eklenmiştir. Defterle satır satır karşılaştırılana kadar doğrulanmamış sayılır ve bu sitedeki hiçbir toplama ya da grafiğe girmez.',
+    'd.rows': '{n} satır', 'd.dl': 'Bu tabloyu indir (CSV)', 'd.dlall': 'Hüküm başına tek satır indir (CSV)',
+    'd.dlall.note': 'Kaynak tablolardan hüküm başına bir satır. Yorum katmanı sütunları yalnızca katman açıkken eklenir ve unverified_ önekini taşır.',
+    'd.t.petitioners': 'Davacılar', 'd.t.locations': 'Yerler', 'd.t.receivers': 'Muhataplar',
+    'd.t.defendants': 'Şikâyet edilenler', 'd.t.financial_claims': 'Tutarlar', 'd.t.admin_hierarchy': 'İdari birimler', 'd.t.resolutions': 'Kararlar',
+    'd.filtered': 'Şu an gösterilen {n} hükmün satırları.',
+    'err.h': 'Veri dosyaları yüklenemedi.',
+    'err.p': 'Bu sayfa dashboard_data.json ve basemap.json dosyalarını kendi klasöründen okur; bu yüzden bir web sunucusu üzerinden açılmalı. Proje klasöründe "python -m http.server" çalıştırıp http://localhost:8000 adresini açın ya da klasörü GitHub Pages ile yayımlayın.'
+  }
+};
+
+/* ===========================================================================
+   3. State
+=========================================================================== */
+const store = {
+  get() { try { return JSON.parse(localStorage.getItem('sikayet-defteri-1') || '{}'); } catch (e) { return {}; } },
+  set(v) { try { localStorage.setItem('sikayet-defteri-1', JSON.stringify(v)); } catch (e) { /* private mode: nothing to keep */ } }
+};
+const saved = store.get();
+const state = {
+  lang: saved.lang === 'tr' ? 'tr' : 'en',
+  theme: saved.theme || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+  interp: !!saved.interp,
+  view: 'map',
+  sel: null,
+  cats: new Set(),
+  kinds: new Set(),
+  q: '',
+  table: 'petitioners'
+};
+const persist = () => store.set({ lang: state.lang, theme: state.theme, interp: state.interp });
+
+let DECREES = [], BY_ID = new Map(), SITES = [], SRC = null, LAYER = null, MISSING = [], MAXNO = 0;
+let map = null, ML = {};
+const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===========================================================================
+   4. Small helpers
+=========================================================================== */
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const t = (key, vars) => {
+  let s = (T[state.lang][key] != null ? T[state.lang][key] : T.en[key]) || key;
+  if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+  return s;
+};
+const num = n => Number(n).toLocaleString(state.lang === 'tr' ? 'tr-TR' : 'en-US');
+const catName = c => c[state.lang];
+const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+const rad = d => d * Math.PI / 180, deg = r => r * 180 / Math.PI;
+function haversine(a, b) {
+  const p1 = rad(a.lat), p2 = rad(b.lat);
+  const x = Math.sin((p2 - p1) / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(rad(b.lng - a.lng) / 2) ** 2;
+  return 2 * 6371 * Math.asin(Math.sqrt(x));
+}
+// Point at a distance and bearing from a start point (for the distance rings).
+function destination(from, km, bearing) {
+  const d = km / 6371, b = rad(bearing), p1 = rad(from.lat), l1 = rad(from.lng);
+  const p2 = Math.asin(Math.sin(p1) * Math.cos(d) + Math.cos(p1) * Math.sin(d) * Math.cos(b));
+  const l2 = l1 + Math.atan2(Math.sin(b) * Math.sin(d) * Math.cos(p1), Math.cos(d) - Math.sin(p1) * Math.sin(p2));
+  return [deg(p2), deg(l2)];
+}
+const median = arr => { const a = [...arr].sort((x, y) => x - y); const m = a.length >> 1; return a.length ? (a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2) : 0; };
+
+/* ===========================================================================
+   5. Load and join. The JSON files are the only copy of the data.
+=========================================================================== */
+const blank = v => v === null || v === undefined || v === '' || (typeof v === 'number' && Number.isNaN(v));
+const trim = v => typeof v === 'string' ? v.trim() : v;
+const cleanRows = rows => (rows || [])
+  .filter(r => !blank(r.decree_id))
+  .map(r => { const o = {}; for (const k in r) o[k] = trim(r[k]); o.decree_id = Math.trunc(Number(r.decree_id)); return o; });
+const normKind = v => { const s = String(v || '').toLowerCase(); return s === 'woman' || s === 'female' ? 'female' : s === 'man' || s === 'male' ? 'male' : s; };
+
+function build(src, layer) {
+  SRC = { petitioners: cleanRows(src.petitioners), locations: cleanRows(src.locations), receivers: cleanRows(src.receivers) };
+  SRC.petitioners.forEach(p => { p.petitioner_gender = normKind(p.petitioner_gender); });
+  LAYER = layer && layer.defendants ? {
+    defendants: cleanRows(layer.defendants), financial_claims: cleanRows(layer.financial_claims),
+    admin_hierarchy: cleanRows(layer.admin_hierarchy), resolutions: cleanRows(layer.resolutions)
+  } : null;
+
+  const pick = (rows, id) => rows.filter(r => r.decree_id === id);
+  DECREES = SRC.petitioners.map(p => {
+    const id = p.decree_id;
+    const places = pick(SRC.locations, id)
+      .filter(l => Number.isFinite(Number(l.lat)) && Number.isFinite(Number(l.long)))
+      .map(l => ({ id: l.location_id, name: l.receiver_location || l.location_name || '', region: l.location_name || '', lat: Number(l.lat), lng: Number(l.long) }));
+    places.forEach(pl => { pl.km = Math.round(haversine(ORIGIN, pl)); });
+    const d = {
+      id, name: p.petitioner_name, title: p.petitioner_title, kind: p.petitioner_gender,
+      subject: p.complaint_subject || '', month: p.month, year: p.year,
+      cat: CAT[classify(p.complaint_subject)],
+      places, receivers: pick(SRC.receivers, id).map(r => r.receiver_title).filter(Boolean),
+      interp: LAYER ? {
+        defendant: pick(LAYER.defendants, id)[0], financial: pick(LAYER.financial_claims, id)[0],
+        hierarchy: pick(LAYER.admin_hierarchy, id)[0], resolution: pick(LAYER.resolutions, id)[0]
+      } : null
+    };
+    return d;
+  }).sort((a, b) => a.id - b.id);
+  BY_ID = new Map(DECREES.map(d => [d.id, d]));
+  MAXNO = Math.max(...DECREES.map(d => d.id));
+  MISSING = []; for (let i = 1; i <= MAXNO; i++) if (!BY_ID.has(i)) MISSING.push(i);
+
+  // Sites: coordinates within about 3 km count as one place on the map.
+  SITES = [];
+  DECREES.forEach(d => {
+    d.sites = [];
+    d.places.forEach(pl => {
+      let s = SITES.find(x => Math.abs(x.lat - pl.lat) < 0.03 && Math.abs(x.lng - pl.lng) < 0.04);
+      if (!s) { s = { i: SITES.length, lat: pl.lat, lng: pl.lng, name: pl.name, names: [], decrees: [] }; s.km = Math.round(haversine(ORIGIN, s)); SITES.push(s); }
+      if (!s.names.includes(pl.name)) s.names.push(pl.name);
+      if (!s.decrees.includes(d)) s.decrees.push(d);
+      if (!d.sites.includes(s)) d.sites.push(s);
+      pl.site = s;
+    });
+  });
+  SITES.forEach(s => { s.atOrigin = s.km < 2; });
+}
+
+/* ===========================================================================
+   6. Filters and selection
+=========================================================================== */
+function matches(d) {
+  if (state.cats.size && !state.cats.has(d.cat.key)) return false;
+  if (state.kinds.size && !state.kinds.has(d.kind)) return false;
+  if (state.q) {
+    const hay = [d.id, d.name, d.title, d.subject, d.cat.en, d.cat.tr, d.receivers.join(' '), d.places.map(p => p.name + ' ' + p.region).join(' ')];
+    if (state.interp && d.interp) {
+      const i = d.interp;
+      hay.push(i.defendant && i.defendant.defendant_name, i.hierarchy && [i.hierarchy.eyalet, i.hierarchy.sancak, i.hierarchy.kaza].join(' '), i.resolution && i.resolution.directive_type);
+    }
+    if (!hay.join(' ').toLocaleLowerCase('tr').includes(state.q.toLocaleLowerCase('tr'))) return false;
+  }
+  return true;
+}
+const shown = () => DECREES.filter(matches);
+const filtered = () => state.cats.size > 0 || state.kinds.size > 0 || !!state.q;
+
+function clearFilters() {
+  state.cats.clear(); state.kinds.clear(); state.q = '';
+  $('#q').value = '';
+  render();
+}
+function select(id, opts = {}) {
+  state.sel = (id != null && BY_ID.has(id) && !(opts.toggle && state.sel === id)) ? id : null;
+  if (opts.view && state.view !== opts.view) setView(opts.view, true);
+  writeHash();
+  render();
+  if (state.sel != null) {
+    if (opts.scroll !== false) scrollToEntry(state.sel);
+    if (opts.move !== false) showDecreeOnMap(BY_ID.get(state.sel), opts.force);
+  }
+}
+function scrollToEntry(id) {
+  const el = $(`#list .entry[data-id="${id}"]`);
+  if (!el) return;
+  const list = $('#list');
+  if (list.scrollHeight > list.clientHeight + 4) {
+    const top = el.offsetTop - list.offsetTop;
+    if (top < list.scrollTop || top + Math.min(el.offsetHeight, list.clientHeight) > list.scrollTop + list.clientHeight) {
+      list.scrollTo({ top: Math.max(0, top - 8), behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+  }
+}
+
+/* ===========================================================================
+   7. Views and routing (#map, #patterns, #data, #method, and #map/27)
+=========================================================================== */
+const VIEWS = ['map', 'patterns', 'data', 'method'];
+function setView(v, silent) {
+  state.view = VIEWS.includes(v) ? v : 'map';
+  VIEWS.forEach(name => { $('#v-' + name).hidden = name !== state.view; });
+  $$('#nav button').forEach(b => { if (b.dataset.view === state.view) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  if (state.view === 'map' && map) { map.invalidateSize(); layoutLabels(); }
+  if (!silent) { writeHash(); render(); window.scrollTo(0, 0); }
+}
+function writeHash() {
+  const h = '#' + state.view + (state.sel != null ? '/' + state.sel : '');
+  try { if (location.hash !== h) history.replaceState(null, '', h); } catch (e) { /* embedded frames may refuse; the page works without it */ }
+}
+function readHash() {
+  const m = /^#(\w+)(?:\/(\d+))?/.exec(location.hash || '');
+  if (!m) return;
+  state.view = VIEWS.includes(m[1]) ? m[1] : 'map';
+  state.sel = m[2] && BY_ID.has(+m[2]) ? +m[2] : null;
+}
+
+/* ===========================================================================
+   8. Map
+=========================================================================== */
+function initMap(basemap) {
+  map = L.map('map', {
+    zoomControl: false, zoomSnap: .25, zoomDelta: .5, wheelPxPerZoomLevel: 110,
+    minZoom: 4.25, maxZoom: 8, maxBounds: [[20, -2], [56, 68]], maxBoundsViscosity: .7,
+    zoomAnimation: !reduceMotion, fadeAnimation: !reduceMotion
+  });
+  map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
+  map.attributionControl.addAttribution((RELIEF ? RELIEF_CREDIT + '. ' : '') + 'Coast and rivers: Natural Earth');
+  L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 130 }).addTo(map);
+
+  // Zoom and "whole map" as one small control.
+  const Ctl = L.Control.extend({
+    options: { position: 'topleft' },
+    onAdd() {
+      const el = L.DomUtil.create('div');
+      el.innerHTML = '<div class="leaflet-bar" style="width:32px"><button type="button" data-z="1">+</button><button type="button" data-z="-1">&minus;</button></div><div class="leaflet-bar fitbar" style="width:max-content"><button type="button" class="fit" data-z="0"></button></div>';
+      L.DomEvent.disableClickPropagation(el);
+      el.addEventListener('click', e => {
+        const b = e.target.closest('button'); if (!b) return;
+        if (b.dataset.z === '0') { fitAll(); ML.touched = false; } else { map.setZoom(map.getZoom() + (+b.dataset.z) * .75); ML.touched = true; }
+      });
+      ML.ctl = el;
+      return el;
+    }
+  });
+  new Ctl().addTo(map);
+
+  const pane = (name, z) => { const p = map.createPane(name); p.style.zIndex = z; p.style.pointerEvents = 'none'; return p; };
+  pane('sea', 250); pane('water', 260); pane('rings', 300); pane('lettering', 310);
+  pane('arcs', 420); pane('placelabels', 440); pane('origin', 590);
+
+  if (RELIEF) ML.relief = L.tileLayer(RELIEF, { maxNativeZoom: 9 }).addTo(map);
+
+  // Sea: one polygon covering the world with the land cut out, so the relief shows on land only.
+  const flip = ring => ring.map(c => [c[1], c[0]]);
+  const world = [[-85, -180], [-85, 180], [85, 180], [85, -180]];
+  const holes = [];
+  basemap.land.forEach(poly => { holes.push(flip(poly[0])); });
+  const seaR = L.canvas({ pane: 'sea', padding: .4 });
+  ML.sea = L.polygon([world, ...holes], { pane: 'sea', renderer: seaR, interactive: false, smoothFactor: .6, fillRule: 'evenodd', fillOpacity: 1, weight: .9 }).addTo(map);
+  // Inland holes of the land polygons (enclosed water) are drawn as lakes.
+  const waterR = L.canvas({ pane: 'water', padding: .4 });
+  ML.rivers = basemap.rivers.map(r => L.polyline(flip(r.c), { pane: 'water', renderer: waterR, interactive: false, weight: r.k <= 4 ? 1.5 : r.k <= 6 ? 1.05 : .75, opacity: .95 }).addTo(map));
+  ML.lakes = basemap.lakes.map(l => L.polygon(flip(l.r[0]), { pane: 'water', renderer: waterR, interactive: false, weight: .7, fillOpacity: 1 }).addTo(map));
+  basemap.land.forEach(poly => poly.slice(1).forEach(hole => ML.lakes.push(L.polygon(flip(hole), { pane: 'water', renderer: waterR, interactive: false, weight: .7, fillOpacity: 1 }).addTo(map))));
+
+  // Distance rings around the place of issue.
+  const ringR = L.svg({ pane: 'rings', padding: .4 });
+  RINGS_KM.forEach(km => {
+    const pts = []; for (let b = 0; b <= 360; b += 3) pts.push(destination(ORIGIN, km, b));
+    L.polyline(pts, { pane: 'rings', renderer: ringR, interactive: false, className: 'ring-line', weight: 1.1 }).addTo(map);
+    L.marker(destination(ORIGIN, km, 16), { pane: 'lettering', interactive: false, keyboard: false, icon: L.divIcon({ className: 'lt lt-ring', iconSize: [0, 0], html: `<span>${km} km</span>` }) }).addTo(map);
+  });
+
+  // Hand-placed lettering.
+  ML.lettering = LETTERING.map(l => {
+    const m = L.marker(l.at, { pane: 'lettering', interactive: false, keyboard: false, icon: L.divIcon({ className: 'lt lt-' + l.cls, iconSize: [0, 0], html: `<span style="--s:${l.s || 1};--rot:${l.rot || 0}deg"></span>` }) }).addTo(map);
+    m._def = l; return m;
+  });
+
+  // The place of issue.
+  L.marker([ORIGIN.lat, ORIGIN.lng], {
+    pane: 'origin', interactive: false, keyboard: false,
+    icon: L.divIcon({ className: 'origin', iconSize: [26, 26], iconAnchor: [13, 13], html: '<svg viewBox="-13 -13 26 26" width="26" height="26" aria-hidden="true"><path d="M0-12 2.6-2.6 12 0 2.6 2.6 0 12-2.6 2.6-12 0-2.6-2.6Z"/><path d="M0-7.5 1.6-1.6 7.5 0 1.6 1.6 0 7.5-1.6 1.6-7.5 0-1.6-1.6Z" transform="rotate(45)"/></svg>' })
+  }).addTo(map);
+  ML.originLabel = L.marker([ORIGIN.lat, ORIGIN.lng], { pane: 'origin', interactive: false, keyboard: false, icon: L.divIcon({ className: 'origin-label', iconSize: [0, 0], html: '<span style="transform:translate(11px, calc(-100% - 5px))"></span>' }) }).addTo(map);
+
+  ML.arcR = L.svg({ pane: 'arcs', padding: .4 });
+  ML.arcs = L.layerGroup().addTo(map);
+  ML.marks = L.layerGroup().addTo(map);
+  ML.labels = L.layerGroup().addTo(map);
+
+  const setZk = () => { $('#map').style.setProperty('--zk', Math.min(1.9, Math.max(.72, Math.pow(2, (map.getZoom() - 5.5) * .55))).toFixed(3)); };
+  map.on('zoomend', () => { setZk(); layoutLabels(); });
+  map.on('zoom', setZk);
+
+  paintBase();
+  fitAll(true);
+  setZk();
+  if (window.ResizeObserver) {
+    let w = 0, h = 0;
+    new ResizeObserver(() => {
+      const el = $('#map');
+      if (!el.clientWidth || (el.clientWidth === w && el.clientHeight === h)) return;
+      const first = !w; w = el.clientWidth; h = el.clientHeight;
+      map.invalidateSize({ pan: false });
+      if (first || !ML.touched) fitAll(true);
+      layoutLabels();
+    }).observe($('#map'));
+  }
+  // Once the reader moves the map, stop refitting it for them.
+  ['wheel', 'mousedown', 'touchstart', 'keydown'].forEach(ev => $('#map').addEventListener(ev, () => { ML.touched = true; }, { passive: true }));
+}
+
+// Canvas layers cannot read CSS variables, so their colours are set from the tokens here.
+function paintBase() {
+  if (!map) return;
+  const sea = css('--sea'), coast = css('--coast'), river = css('--river');
+  ML.sea.setStyle({ color: coast, fillColor: sea });
+  ML.rivers.forEach(r => r.setStyle({ color: river }));
+  ML.lakes.forEach(l => l.setStyle({ color: coast, fillColor: sea }));
+}
+
+function fitAll(instant) {
+  const list = shown();
+  const pts = [[ORIGIN.lat, ORIGIN.lng]];
+  (list.length ? list : DECREES).forEach(d => d.sites.forEach(s => pts.push([s.lat, s.lng])));
+  map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [56, 44], paddingBottomRight: [70, 64], maxZoom: 6.75, animate: !instant && !reduceMotion });
+}
+
+// Keep the map still when the decree's places are already on screen.
+function showDecreeOnMap(d, force) {
+  if (!map || !d || !d.sites.length || state.view !== 'map') return;
+  const b = L.latLngBounds(d.sites.map(s => [s.lat, s.lng])).extend([ORIGIN.lat, ORIGIN.lng]);
+  const view = map.getBounds().pad(-0.12);
+  if (!force && view.contains(b)) return;
+  ML.touched = true;
+  map.flyToBounds(b, { paddingTopLeft: [70, 60], paddingBottomRight: [70, 60], maxZoom: Math.max(map.getZoom(), 6), duration: .6, animate: !reduceMotion });
+}
+
+// A gentle arc between two points, computed in projected space so it keeps its shape at any zoom.
+function arc(a, b) {
+  const p0 = map.project([a.lat, a.lng], 6), p2 = map.project([b.lat, b.lng], 6);
+  const cx = (p0.x + p2.x) / 2 - (p2.y - p0.y) * .15, cy = (p0.y + p2.y) / 2 + (p2.x - p0.x) * .15;
+  const out = [];
+  for (let i = 0; i <= 26; i++) {
+    const s = i / 26, u = 1 - s;
+    out.push(map.unproject(L.point(u * u * p0.x + 2 * u * s * cx + s * s * p2.x, u * u * p0.y + 2 * u * s * cy + s * s * p2.y), 6));
+  }
+  return out;
+}
+
+const placeList = d => {
+  const names = []; d.sites.forEach(s => { if (!names.includes(s.name)) names.push(s.name); });
+  return names;
+};
+const placeLine = d => { const n = placeList(d); return n.length > 3 ? t('more', { first: n.slice(0, 2).join(', '), n: n.length - 2 }) : n.join(', '); };
+const petitioner = d => d.name || `${d.title || ''} (${t('unnamed')})`.trim();
+
+function renderMap() {
+  if (!map) return;
+  const list = shown();
+  const ids = new Set(list.map(d => d.id));
+  const sel = state.sel != null && ids.has(state.sel) ? BY_ID.get(state.sel) : null;
+  ML.arcs.clearLayers(); ML.marks.clearLayers();
+  ML.markEls = new Map();
+
+  SITES.forEach(site => {
+    const here = site.decrees.filter(d => ids.has(d.id));
+    site._n = here.length;
+    if (!here.length) return;
+
+    if (!site.atOrigin) {
+      L.polyline(arc(ORIGIN, site), { pane: 'arcs', renderer: ML.arcR, interactive: false, className: 'arc' + (sel ? ' quiet' : ''), weight: Math.min(2.2, .8 + here.length * .3) }).addTo(ML.arcs);
+      if (sel && here.includes(sel)) L.polyline(arc(ORIGIN, site), { pane: 'arcs', renderer: ML.arcR, interactive: false, className: 'arc sel k-' + sel.cat.k, weight: 2.6 }).addTo(ML.arcs);
+    }
+
+    // Decrees sent to the same place are set in a ring around it, so each can be seen and clicked.
+    const n = here.length, r = site.atOrigin ? 19 : n === 1 ? 0 : n === 2 ? 9 : 10 + n * 1.4;
+    site._r = r;
+    here.forEach((d, i) => {
+      const a = -Math.PI / 2 + (site.atOrigin ? Math.PI * .75 : 0) + i * 2 * Math.PI / Math.max(n, 1);
+      const dx = Math.round(Math.cos(a) * r), dy = Math.round(Math.sin(a) * r);
+      const cls = 'mk k-' + d.cat.k + (sel ? (d === sel ? ' sel' : ' dim') : '');
+      const m = L.marker([site.lat, site.lng], {
+        keyboard: false, riseOnHover: true, zIndexOffset: d === sel ? 1000 : 0,
+        icon: L.divIcon({ className: cls, html: glyph(d.cat.shape), iconSize: [20, 20], iconAnchor: [10 - dx, 10 - dy], tooltipAnchor: [dx, dy - 11] })
+      });
+      m.bindTooltip(`<b>${t('decree')} ${d.id}</b><span>${esc(site.name)}${d.sites.length > 1 ? ', ' + t('tt.places', { n: d.sites.length }) : ''}</span><span>${esc(petitioner(d))}</span>`, { direction: 'top', className: 'tt', opacity: 1 });
+      m.on('click', () => select(d.id, { toggle: true, move: false }));
+      m.addTo(ML.marks);
+      if (!ML.markEls.has(d.id)) ML.markEls.set(d.id, []);
+      ML.markEls.get(d.id).push(m);
+    });
+  });
+  layoutLabels();
+}
+
+function highlight(id, on) {
+  const ms = ML.markEls && ML.markEls.get(id);
+  if (ms) ms.forEach(m => { const el = m.getElement(); if (el) el.classList.toggle('hl', on); });
+}
+
+// Place names: put as many as fit without overlap, busiest places first. Selected places always show.
+let labelCtx = null;
+function layoutLabels() {
+  if (!map || !ML.labels) return;
+  ML.labels.clearLayers();
+  if (!labelCtx) labelCtx = document.createElement('canvas').getContext('2d');
+  labelCtx.font = 'italic 500 14.5px Alegreya, Georgia, serif';
+  const sel = state.sel != null ? BY_ID.get(state.sel) : null;
+  const boxes = [];
+  const hit = b => boxes.some(o => b.x < o.x + o.w && b.x + b.w > o.x && b.y < o.y + o.h && b.y + b.h > o.y);
+  const active = SITES.filter(s => s._n > 0 && !s.atOrigin);
+  active.forEach(s => { s._p = map.latLngToLayerPoint([s.lat, s.lng]); const m = (s._r || 0) + 11; boxes.push({ x: s._p.x - m, y: s._p.y - m, w: m * 2, h: m * 2 }); });
+  const o = map.latLngToLayerPoint([ORIGIN.lat, ORIGIN.lng]);
+  boxes.push({ x: o.x - 24, y: o.y - 50, w: 150, h: 74 });
+  active
+    .map(s => ({ s, em: !!(sel && sel.sites.includes(s)) }))
+    .sort((a, b) => (b.em - a.em) || (b.s._n - a.s._n) || (b.s.km - a.s.km))
+    .forEach(({ s, em }) => {
+      const w = labelCtx.measureText(s.name).width * (em ? 1.1 : 1) + 6, h = 17, g = (s._r || 0) + 12;
+      const tries = [
+        { x: s._p.x + g, y: s._p.y - h / 2, css: `left:${g}px;top:${-h / 2}px` },
+        { x: s._p.x - g - w, y: s._p.y - h / 2, css: `right:${g}px;top:${-h / 2}px` },
+        { x: s._p.x - w / 2, y: s._p.y + g - 2, css: `left:${-w / 2}px;top:${g - 2}px` },
+        { x: s._p.x - w / 2, y: s._p.y - g - h + 2, css: `left:${-w / 2}px;top:${-g - h + 2}px` }
+      ];
+      if (em) tries.push(
+        { x: s._p.x + g - 4, y: s._p.y - g - h + 6, css: `left:${g - 4}px;top:${-g - h + 6}px` },
+        { x: s._p.x + g - 4, y: s._p.y + g - 6, css: `left:${g - 4}px;top:${g - 6}px` },
+        { x: s._p.x - g - w + 4, y: s._p.y - g - h + 6, css: `right:${g - 4}px;top:${-g - h + 6}px` },
+        { x: s._p.x - g - w + 4, y: s._p.y + g - 6, css: `right:${g - 4}px;top:${g - 6}px` });
+      const spot = tries.find(c => !hit({ x: c.x, y: c.y, w, h }));
+      if (!spot) return;
+      boxes.push({ x: spot.x, y: spot.y, w, h });
+      L.marker([s.lat, s.lng], { pane: 'placelabels', interactive: false, keyboard: false, icon: L.divIcon({ className: 'pl' + (em ? ' em' : ''), iconSize: [0, 0], html: `<span style="${spot.css}">${esc(s.name)}</span>` }) }).addTo(ML.labels);
+    });
+}
+
+function renderMapText() {
+  if (!map) return;
+  ML.lettering.forEach(m => { const el = m.getElement(); if (el) el.firstChild.textContent = m._def[state.lang]; });
+  const ol = ML.originLabel.getElement();
+  if (ol) ol.firstChild.innerHTML = `${esc(t('origin'))}<i>${esc(t('originsub'))}</i>`;
+  if (ML.ctl) {
+    const [zi, zo, fit] = ML.ctl.querySelectorAll('button');
+    zi.setAttribute('aria-label', t('zoomin')); zo.setAttribute('aria-label', t('zoomout')); fit.textContent = t('fit');
+  }
+}
+
+/* ===========================================================================
+   9. Plate furniture: cartouche, legend, strip
+=========================================================================== */
+const dateLabel = d => `${HIJRI_MONTHS[d.month] || d.month || ''} ${d.year || ''}`.trim();
+
+function renderCartouche() {
+  const list = shown();
+  const places = new Set(); list.forEach(d => d.sites.forEach(s => places.add(s)));
+  const first = DECREES[0] || {};
+  let line;
+  if (!list.length) line = t('ct.none');
+  else if (!filtered()) line = t('ct.all', { n: num(list.length), p: num(places.size) });
+  else line = t('ct.some', { n: num(list.length), N: num(DECREES.length), p: num(places.size) });
+  $('#ct-line').textContent = line;
+  $('#ct-sub').textContent = t('ct.sub', { month: HIJRI_MONTHS[first.month] || first.month || '', year: first.year || '' });
+  $('#ct-clear').hidden = !filtered();
+}
+
+function renderLegend() {
+  const base = DECREES.filter(d => {
+    // counts ignore the type filter itself, so the legend always shows what each type would give
+    const keep = state.cats; state.cats = new Set(); const ok = matches(d); state.cats = keep; return ok;
+  });
+  const el = $('#legend');
+  el.classList.toggle('filtered', state.cats.size > 0);
+  el.innerHTML = `<h2>${esc(t('legend.title'))}</h2><ul>` + CATS.map(c => {
+    const n = base.filter(d => d.cat === c).length;
+    const on = state.cats.has(c.key);
+    return `<li><button type="button" class="k-${c.k}" data-cat="${esc(c.key)}" aria-pressed="${on}">${glyph(c.shape)}<span>${esc(catName(c))}</span><span class="n">${n}</span></button></li>`;
+  }).join('') + '</ul>' + (state.cats.size ? `<p class="foot"><button type="button" class="textbtn" data-act="allcats">${esc(t('legend.all'))}</button></p>` : '');
+}
+
+function renderStrip() {
+  const ids = new Set(shown().map(d => d.id));
+  let cells = '', ticks = '';
+  for (let i = 1; i <= MAXNO; i++) {
+    const d = BY_ID.get(i);
+    cells += d
+      ? `<button type="button" class="k-${d.cat.k}${ids.has(i) ? '' : ' off'}${state.sel === i ? ' sel' : ''}" data-id="${i}" aria-label="${esc(t('decree'))} ${i}"></button>`
+      : `<span class="gap" data-gap="${i}"></span>`;
+    ticks += `<span>${i === 1 || i % 10 === 0 || i === MAXNO && i % 10 > 2 ? i : ''}</span>`;
+  }
+  $('#strip').innerHTML =
+    `<div class="strip-head"><b>${esc(t('strip.title'))}</b><span>${MISSING.length ? esc(t('strip.gap', { list: MISSING.join(', ') })) : ''}</span></div>` +
+    `<div class="strip-cells">${cells}</div><div class="strip-ticks" aria-hidden="true">${ticks}</div>`;
+}
+
+/* ===========================================================================
+   10. Register column
+=========================================================================== */
+function renderKinds() {
+  $('#kinds').innerHTML = KINDS.map(k => {
+    const n = DECREES.filter(d => d.kind === k).length;
+    return `<button type="button" class="chip" data-kind="${k}" aria-pressed="${state.kinds.has(k)}">${esc(t('kind.' + k))} ${n}</button>`;
+  }).join('');
+}
+
+function kunye(d) {
+  const places = d.places.length
+    ? d.places.map(p => `${esc(p.name)}${p.region && p.region !== p.name ? ` (${esc(p.region)})` : ''}<small>${p.lat.toFixed(3)}, ${p.lng.toFixed(3)}; ${esc(t('km', { km: num(p.km) }))}</small>`).join('')
+    : '';
+  let interp = '';
+  if (d.interp) {
+    if (state.interp) {
+      const i = d.interp, f = i.financial || {}, h = i.hierarchy || {}, r = i.resolution || {}, df = i.defendant || {};
+      const amount = f.normalized_gurus > 0
+        ? `${num(f.amount_gurus || 0)} guruş${f.amount_akce ? `, ${num(f.amount_akce)} akçe` : ''}`
+        : (f.amount_akce ? `${num(f.amount_akce)} akçe` : t('i.none'));
+      interp = `<div class="interp"><h3>${esc(t('interp.title'))}</h3><p>${esc(t('interp.note'))}</p><dl>
+        <dt>${esc(t('i.accused'))}</dt><dd>${esc(df.defendant_name || '')}<small>${esc(df.defendant_category || '')}</small></dd>
+        <dt>${esc(t('i.amount'))}</dt><dd>${esc(amount)}<small>${esc(f.claim_type || '')}; ${esc(f.quantification || '')}</small></dd>
+        <dt>${esc(t('i.unit'))}</dt><dd>${esc([h.eyalet, h.sancak, h.kaza, h.karye_or_nefs].filter(Boolean).join(' / '))}</dd>
+        <dt>${esc(t('i.directive'))}</dt><dd>${esc(r.directive_type || '')}<small>${esc(r.directive_summary || '')}</small></dd>
+      </dl></div>`;
+    }
+  }
+  return `<div class="kunye">
+    <dl>
+      <dt>${esc(t('k.petitioner'))}</dt><dd>${esc(petitioner(d))}<small>${esc([d.name ? d.title : '', t('kind1.' + d.kind)].filter(Boolean).join(', '))}</small></dd>
+      <dt>${esc(t('k.type'))}</dt><dd><span class="typ k-${d.cat.k}">${glyph(d.cat.shape)}${esc(catName(d.cat))}</span><small>${esc(t('k.typenote'))}</small></dd>
+      <dt>${esc(t('k.to'))}</dt><dd>${esc(d.receivers.join(', '))}</dd>
+      <dt>${esc(t('k.places'))}</dt><dd>${places}</dd>
+      <dt>${esc(t('k.date'))}</dt><dd>${esc(dateLabel(d))}<small>${esc(t('date.g'))}</small></dd>
+    </dl>
+    ${interp}
+    <div class="kunye-actions">
+      <button type="button" class="textbtn" data-act="showmap" data-id="${d.id}">${esc(t('showmap'))}</button>
+      ${d.interp ? `<button type="button" class="textbtn" data-act="interp">${esc(t(state.interp ? 'interp.hide' : 'interp.show'))}</button>` : ''}
+    </div>
+  </div>`;
+}
+
+function renderList() {
+  const list = shown();
+  $('#reg-count').textContent = t('reg.count', { n: num(list.length), N: num(DECREES.length) });
+  $('#q').placeholder = t('reg.search');
+  $('#q').setAttribute('aria-label', t('reg.search'));
+  if (!list.length) {
+    $('#list').innerHTML = `<li class="empty"><p>${esc(t('empty'))}</p><button type="button" class="textbtn" data-act="clear">${esc(t('clear'))}</button></li>`;
+    return;
+  }
+  $('#list').innerHTML = list.map(d => {
+    const sel = state.sel === d.id;
+    return `<li class="entry k-${d.cat.k}${sel ? ' sel' : ''}" data-id="${d.id}">
+      <button type="button" aria-expanded="${sel}">
+        <span class="no">${d.id}</span>
+        <span class="body"><span class="where">${esc(placeLine(d))}</span><span class="who">${esc(petitioner(d))}</span><span class="what">${esc(d.subject)}</span></span>
+        <span class="gl" title="${esc(catName(d.cat))}">${glyph(d.cat.shape)}</span>
+      </button>${sel ? kunye(d) : ''}</li>`;
+  }).join('');
+}
+
+/* ===========================================================================
+   11. Patterns
+=========================================================================== */
+function renderPatterns() {
+  const list = shown();
+  const el = $('#patterns');
+  const scope = filtered()
+    ? `${esc(t('p.scope.some', { n: num(list.length), N: num(DECREES.length) }))} <button type="button" class="textbtn" data-act="clear">${esc(t('clear'))}</button>`
+    : esc(t('p.scope.all', { N: num(DECREES.length) }));
+
+  // Distance: one mark per decree and place.
+  const pts = [];
+  list.forEach(d => d.sites.forEach(s => pts.push({ d, s, km: s.km })));
+  pts.sort((a, b) => a.km - b.km);
+  const med = Math.round(median(pts.map(p => p.km)));
+  const W = 1000, PL = 14, PR = 30, maxKm = Math.max(1700, ...pts.map(p => p.km)), x = km => PL + (W - PL - PR) * km / maxKm;
+  const placed = [], D = 12.5;
+  pts.forEach(p => {
+    p.x = x(p.km);
+    for (let step = 0; ; step++) {
+      const y = (step % 2 ? 1 : -1) * Math.ceil(step / 2) * (D / 2);
+      if (!placed.some(q => (q.x - p.x) ** 2 + (q.y - y) ** 2 < D * D)) { p.y = y; break; }
+    }
+    placed.push(p);
+  });
+  const half = Math.max(30, ...placed.map(p => Math.abs(p.y))) + 14;
+  const H = half * 2 + 52, mid = half + 22;
+  const ticks = []; for (let k = 0; k <= maxKm; k += 250) ticks.push(k);
+  const far = [];
+  placed.filter(p => p.km >= 1000).forEach(p => { if (!far.some(q => q.s === p.s)) far.push(p); });
+  far.forEach((p, i) => {
+    const top = Math.min(...placed.filter(q => Math.abs(q.x - p.x) < 40).map(q => q.y));
+    p.ly = mid + top - 13;
+    if (i && Math.abs(far[i - 1].x - p.x) < 60) p.ly = far[i - 1].ly - 17;
+  });
+  const swarm = `<svg class="swarm" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t('p.dist.h'))}">
+    <line class="axis" x1="${PL}" x2="${W - PR}" y1="${H - 26}" y2="${H - 26}"/>
+    ${ticks.map(k => `<line class="axis" x1="${x(k)}" x2="${x(k)}" y1="${H - 26}" y2="${H - 21}"/><text class="tick" x="${x(k)}" y="${H - 6}" text-anchor="${k === 0 ? 'start' : 'middle'}">${k === 0 ? esc(t('origin')) : num(k) + ' km'}</text>`).join('')}
+    ${pts.length ? `<line class="med" x1="${x(med)}" x2="${x(med)}" y1="12" y2="${H - 26}"/><text class="medlab" x="${x(med) + 6}" y="11">${esc(t('p.dist.med', { med: num(med) }))}</text>` : ''}
+    ${far.map(p => `<text class="lab" x="${p.x}" y="${p.ly}" text-anchor="middle">${esc(p.s.name)}</text>`).join('')}
+    ${placed.map(p => `<g class="pt k-${p.d.cat.k}" data-id="${p.d.id}" data-tip="${esc(`<b>${esc(t('decree'))} ${p.d.id}</b><span>${esc(p.s.name)}, ${esc(t('kmshort', { km: num(p.km) }))}</span><span>${esc(petitioner(p.d))}</span>`)}" transform="translate(${p.x.toFixed(1)},${(mid + p.y).toFixed(1)})"><g class="g" transform="scale(.82)">${SHAPES[p.d.cat.shape]}</g></g>`).join('')}
+  </svg>`;
+
+  // Type by kind of petitioner.
+  const maxCell = Math.max(1, ...CATS.map(c => Math.max(...KINDS.map(k => list.filter(d => d.cat === c && d.kind === k).length))));
+  const cell = n => n ? `<td class="cell"><i style="--w:${Math.round(12 + 78 * n / maxCell)}"${n / maxCell > .55 ? ' class="hi"' : ''}>${n}</i></td>` : '<td class="cell"></td>';
+  const matrix = `<table class="matrix"><thead><tr><th scope="col" style="text-align:left">${esc(t('p.who.type'))}</th>${KINDS.map(k => `<th scope="col">${esc(t('kind.' + k))}</th>`).join('')}<th scope="col">${esc(t('p.who.total'))}</th></tr></thead><tbody>` +
+    CATS.map(c => {
+      const row = list.filter(d => d.cat === c);
+      return `<tr><th scope="row"><span class="k-${c.k}">${glyph(c.shape)}${esc(catName(c))}</span></th>${KINDS.map(k => cell(row.filter(d => d.kind === k).length)).join('')}<td>${row.length}</td></tr>`;
+    }).join('') +
+    `</tbody><tfoot><tr><th scope="row" style="text-align:left">${esc(t('p.who.total'))}</th>${KINDS.map(k => `<td>${list.filter(d => d.kind === k).length}</td>`).join('')}<td>${list.length}</td></tr></tfoot></table>`;
+
+  // Addressees.
+  const counts = new Map(); let rows = 0;
+  list.forEach(d => d.receivers.forEach(r => { counts.set(r, (counts.get(r) || 0) + 1); rows++; }));
+  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+  const top = sorted.slice(0, 8), rest = sorted.slice(8);
+  if (rest.length) top.push([t('p.to.other', { n: rest.length }), rest.reduce((a, r) => a + r[1], 0)]);
+  const maxBar = Math.max(1, ...top.map(r => r[1]));
+  const bars = `<div class="bars">${top.map(([name, n]) => `<span>${esc(name)}</span><span class="track"><span class="fill" style="display:block;width:${(100 * n / maxBar).toFixed(1)}%"></span></span><span class="v">${n}</span>`).join('')}</div>`;
+  const withKadi = list.filter(d => d.receivers.some(r => /kadi/i.test(r))).length;
+
+  // Reach.
+  const one = list.filter(d => d.sites.length === 1).length, many = list.filter(d => d.sites.length > 1).length;
+  const widest = list.slice().sort((a, b) => b.sites.length - a.sites.length)[0];
+
+  // Sums written in the summaries.
+  const sums = [];
+  list.forEach(d => { const re = /(\d[\d.,]*)\s*(guruş|akçe)/gi; let m; while ((m = re.exec(d.subject))) sums.push({ d, text: `${m[1]} ${m[2]}` }); });
+
+  el.innerHTML = `
+    <h1>${esc(t('p.h1'))}</h1>
+    <p class="lede">${esc(t('p.lede'))}</p>
+    <p class="scope">${scope}</p>
+    <section><h2>${esc(t('p.dist.h'))}</h2><p class="note">${esc(t('p.dist.note', { med: num(med) }))} ${widest ? esc(t('p.spread.note', { one: num(one), many: num(many), id: widest.id, max: widest.sites.length })) : ''}</p>${swarm}</section>
+    <div class="cols">
+      <section><h2>${esc(t('p.who.h'))}</h2><p class="note">${esc(t('p.who.note'))}</p>${matrix}</section>
+      <section><h2>${esc(t('p.to.h'))}</h2><p class="note">${esc(t('p.to.note', { rows: num(rows), n: num(list.length), kadi: num(withKadi) }))}</p>${bars}</section>
+    </div>
+    <div>
+      <section><h2>${esc(t('p.amt.h'))}</h2><p class="note">${esc(t('p.amt.note'))}</p>${sums.length
+        ? `<ul class="amounts">${sums.map(s => `<li><b>${esc(s.text)}</b><span><button type="button" class="textbtn" data-act="open" data-id="${s.d.id}">${esc(t('decree'))} ${s.d.id}</button>: ${esc(s.d.subject)}</span></li>`).join('')}</ul>`
+        : `<p class="note">${esc(t('p.amt.none'))}</p>`}</section>
+    </div>`;
+}
+
+/* ===========================================================================
+   12. Data
+=========================================================================== */
+const TABLES = [
+  { key: 'petitioners', src: true }, { key: 'locations', src: true }, { key: 'receivers', src: true },
+  { key: 'defendants' }, { key: 'financial_claims' }, { key: 'admin_hierarchy' }, { key: 'resolutions' }
+];
+const tableRows = key => {
+  const ids = new Set(shown().map(d => d.id));
+  const rows = (TABLES.find(x => x.key === key).src ? SRC[key] : (LAYER ? LAYER[key] : [])) || [];
+  return rows.filter(r => ids.has(r.decree_id));
+};
+function renderData() {
+  const el = $('#data');
+  const cur = TABLES.find(x => x.key === state.table) || TABLES[0];
+  const rows = tableRows(cur.key);
+  const cols = rows.length ? Object.keys(rows[0]) : [];
+  const numeric = c => rows.every(r => r[c] == null || typeof r[c] === 'number') && c !== 'decree_id';
+  const long = c => /subject|summary|name|type/.test(c);
+  const btn = x => `<li><button type="button" data-table="${x.key}" aria-pressed="${x.key === cur.key}"><span>${esc(t('d.t.' + x.key))}</span><span>${tableRows(x.key).length}</span></button></li>`;
+  el.innerHTML = `
+    <h1>${esc(t('d.h1'))}</h1>
+    <p class="lede">${esc(t('d.lede'))}</p>
+    <p class="scope">${filtered() ? `${esc(t('d.filtered', { n: num(shown().length) }))} <button type="button" class="textbtn" data-act="clear">${esc(t('clear'))}</button>` : ''}</p>
+    <div class="datawrap">
+      <div class="tablelist">
+        <h3>${esc(t('d.src'))}</h3><ul>${TABLES.filter(x => x.src).map(btn).join('')}</ul>
+        ${LAYER ? `<h3>${esc(t('d.int'))}</h3><p class="side-note">${esc(t('interp.note'))}</p><ul>${TABLES.filter(x => !x.src).map(btn).join('')}</ul>` : ''}
+        <p class="side-note" style="margin-top:16px"><button type="button" class="textbtn" data-act="dlall">${esc(t('d.dlall'))}</button></p>
+        <p class="side-note">${esc(t('d.dlall.note'))}</p>
+      </div>
+      <div>
+        <div class="tablehead"><h2>${esc(t('d.t.' + cur.key))}</h2><div class="acts"><span>${esc(t('d.rows', { n: num(rows.length) }))}</span><button type="button" class="textbtn" data-act="dl">${esc(t('d.dl'))}</button></div></div>
+        ${cur.src ? '' : `<p class="warn">${esc(t('d.warn'))}</p>`}
+        <div class="scroll" tabindex="0"><table class="grid"><thead><tr>${cols.map(c => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>
+          ${rows.map(r => `<tr>${cols.map(c => c === 'decree_id'
+            ? `<td><button type="button" class="textbtn" data-act="open" data-id="${r[c]}">${r[c]}</button></td>`
+            : `<td class="${numeric(c) ? 'num' : ''}${long(c) && String(r[c] || '').length > 40 ? ' wrap' : ''}">${esc(r[c] == null ? '' : r[c])}</td>`).join('')}</tr>`).join('')}
+        </tbody></table></div>
+      </div>
+    </div>`;
+}
+
+const csvCell = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
+function download(name, lines) {
+  const url = URL.createObjectURL(new Blob(['﻿' + lines.join('\n')], { type: 'text/csv;charset=utf-8' }));
+  const a = document.createElement('a'); a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+function downloadTable() {
+  const rows = tableRows(state.table); if (!rows.length) return;
+  const cols = Object.keys(rows[0]);
+  const src = TABLES.find(x => x.key === state.table).src;
+  download(`${src ? '' : 'unverified_'}${state.table}.csv`, [cols.join(','), ...rows.map(r => cols.map(c => csvCell(r[c])).join(','))]);
+}
+function downloadMaster() {
+  const head = ['decree_id', 'hijri_year', 'hijri_month', 'petitioner_name', 'petitioner_title', 'petitioner_kind', 'complaint_subject', 'complaint_type_by_keyword', 'addressees', 'places', 'coordinates', 'km_from_istanbul'];
+  const withLayer = state.interp && LAYER;
+  if (withLayer) head.push('unverified_defendant_name', 'unverified_defendant_category', 'unverified_amount_gurus', 'unverified_amount_akce', 'unverified_quantification', 'unverified_eyalet', 'unverified_sancak', 'unverified_kaza', 'unverified_directive_type', 'unverified_directive_summary');
+  const lines = shown().map(d => {
+    const row = [d.id, d.year, d.month, d.name, d.title, d.kind, d.subject, d.cat.key, d.receivers.join('; '), d.places.map(p => p.name).join('; '), d.places.map(p => `${p.lat} ${p.lng}`).join('; '), d.places.map(p => p.km).join('; ')];
+    if (withLayer) {
+      const i = d.interp || {}, df = i.defendant || {}, f = i.financial || {}, h = i.hierarchy || {}, r = i.resolution || {};
+      row.push(df.defendant_name, df.defendant_category, f.amount_gurus, f.amount_akce, f.quantification, h.eyalet, h.sancak, h.kaza, r.directive_type, r.directive_summary);
+    }
+    return row.map(csvCell).join(',');
+  });
+  download('sikayet_defteri_1_muharrem_1059.csv', [head.join(','), ...lines]);
+}
+
+/* ===========================================================================
+   13. Method
+=========================================================================== */
+function renderMethod() {
+  const tr = state.lang === 'tr';
+  const miss = MISSING.join(', ');
+  const rules = RULES.map(([cat, words]) => `<tr><td>${esc(catName(CAT[cat]))}</td><td>${esc(words.join(', '))}</td></tr>`).join('') +
+    `<tr><td>${esc(catName(CAT['Other Civil Matters']))}</td><td>${tr ? 'hiçbiri eşleşmezse' : 'when nothing matches'}</td></tr>`;
+  $('#method').innerHTML = tr ? `
+    <h1>Bu harita neyi gösteriyor, neyi göstermiyor</h1>
+    <p class="lede">Dîvân-ı Hümâyûn'a ulaşan bir şikâyete verilen cevap bir hükümdür. Defter, hükmün kime yazıldığını kaydeder: bir kadıya, bir beylerbeyine, bazen birkaç şehirdeki birkaç görevliye. Harita o adresi çizer.</p>
+
+    <h2>Kaynak</h2>
+    <p>Devlet Arşivleri Başkanlığı Osmanlı Arşivi, Atik Şikâyet Defterleri (A.DVNS.ŞKT.d), 1 numaralı defter. Veri seti ${MAXNO ? '1 ile ' + MAXNO + ' arasında numaralanan' : ''} kayıtları kapsar; hepsi Muharrem 1059 olarak kodlanmıştır. ${MISSING.length ? miss + ' numaralı kayıtlar kodlanmamıştır.' : ''}</p>
+    <p>Muharrem 1059 aşağı yukarı 15 Ocak ile 13 Şubat 1649 arasına denk gelir (hesapla çevrilmiştir, bir gün oynayabilir).</p>
+
+    <h2>Defterden gelenler</h2>
+    <p>Üç tablo: davacılar (ad, unvan, erkek, kadın ya da topluluk oluşu, şikâyetin özeti), yerler (Osmanlıca yer adı, bugünkü karşılığı, koordinat) ve muhataplar (unvan). Haritadaki, Örüntüler sayfasındaki ve sayımlardaki her şey yalnızca bu üç tabloya dayanır. Değerler kodlandığı dilde, yani İngilizce gösterilir.</p>
+
+    <h2>Sınıflandırma bu sayfanın</h2>
+    <p>Yedi şikâyet türü defterde yoktur. Sayfa, İngilizce şikâyet özetindeki anahtar kelimelere bakarak atar; ilk eşleşen kural geçerlidir. Haritayı okumayı kolaylaştıran bir araçtır, bulgu değildir.</p>
+    <table><thead><tr><th>Tür</th><th>Özette aranan kelimeler</th></tr></thead><tbody>${rules}</tbody></table>
+
+    <h2>Yorum katmanı</h2>
+    <p>Şikâyet edilenler, tutarlar, idari birimler ve kararlar tabloları üç kaynak tablonun üzerine sonradan eklenmiştir. Defterle satır satır karşılaştırılana kadar doğrulanmamış sayılır. Bu yüzden ayrı bir dosyada durur, varsayılan olarak kapalıdır ve hiçbir toplama ya da grafiğe girmez. Bir hükmün künyesinden açılabilir.</p>
+
+    <h2>Haritayı okurken</h2>
+    <ul>
+      <li>Noktalar, adı geçen yerleşimlerin bugünkü koordinatlarıdır. Aynı yere yazılan hükümler o yerin çevresine dizilir.</li>
+      <li>Çizgiler İstanbul'dan çıkan düz bağlantılardır, okunaklı olsun diye yay olarak çizilmiştir. Ulak güzergâhı değildir.</li>
+      <li>Halkalar İstanbul'a kuş uçuşu uzaklığı gösterir. Divan'ın İstanbul'da toplandığı varsayılmıştır.</li>
+      <li>Kıyı çizgisi ve nehirler bugünkü haldedir; barajlar ve kanallar çıkarılmıştır. Bölge adları dönemin yaygın adlarıdır, yön bulmak içindir; sınır çizilmemiştir.</li>
+    </ul>
+
+    <h2>Emeği geçenler</h2>
+    <p>Kabartma: Esri World Shaded Relief. Kıyı, göller ve nehirler: Natural Earth (kamu malı). Yazı: Alegreya, Alegreya Sans ve Amiri (SIL Open Font License). Harita kütüphanesi: Leaflet.</p>
+  ` : `
+    <h1>What this map shows, and what it does not</h1>
+    <p class="lede">A decree is the Imperial Council's answer to a petition. The register records to whom the answer was written: a kadi, a governor, sometimes several officials in several towns. The map draws that address.</p>
+
+    <h2>Source</h2>
+    <p>Ottoman Archives of the Directorate of State Archives (Devlet Arşivleri Başkanlığı Osmanlı Arşivi), Atik Şikâyet Defterleri (A.DVNS.ŞKT.d), register no. 1. The dataset covers the entries numbered ${MAXNO ? '1 to ' + MAXNO : ''}, all coded as Muharrem 1059. ${MISSING.length ? 'Entries ' + miss + ' are not coded.' : ''}</p>
+    <p>Muharrem 1059 runs from about 15 January to 13 February 1649 (converted by calculation, so it may be a day off).</p>
+
+    <h2>What comes from the register</h2>
+    <p>Three tables: petitioners (name, title, whether a man, a woman or a group, and a summary of the complaint), places (Ottoman place name, modern equivalent, coordinates) and addressees (title). Everything on the map, on the Patterns page and in the counts rests on these three tables only. Values are shown in the language they were coded in, which is English.</p>
+
+    <h2>The classification is this page's own</h2>
+    <p>The seven complaint types are not in the register. The page assigns them from keywords in the English complaint summary, and the first rule that matches wins. It is an aid for reading the map, not a finding.</p>
+    <table><thead><tr><th>Type</th><th>Words looked for in the summary</th></tr></thead><tbody>${rules}</tbody></table>
+
+    <h2>The interpretive layer</h2>
+    <p>The tables of accused parties, amounts, administrative units and directives were added on top of the three source tables. Until they are checked line by line against the register they count as unverified. They therefore live in a separate file, are switched off by default, and stay out of every total and chart. They can be opened from a decree's record.</p>
+
+    <h2>Reading the map</h2>
+    <ul>
+      <li>Points are the modern coordinates of the settlements named. Decrees written to the same place are set in a ring around it.</li>
+      <li>Lines are straight connections from Istanbul, drawn as arcs so they can be told apart. They are not courier routes.</li>
+      <li>Rings give the distance from Istanbul as the crow flies. The Council is taken to sit in Istanbul.</li>
+      <li>Coastline and rivers are today's; reservoirs and canals are removed. Region names are period names placed for orientation; no boundaries are drawn.</li>
+    </ul>
+
+    <h2>Credits</h2>
+    <p>Relief: Esri World Shaded Relief. Coast, lakes and rivers: Natural Earth (public domain). Type: Alegreya, Alegreya Sans and Amiri (SIL Open Font License). Map library: Leaflet.</p>
+  `;
+}
+
+/* ===========================================================================
+   14. Render and wiring
+=========================================================================== */
+function renderChrome() {
+  document.documentElement.lang = state.lang;
+  document.documentElement.dataset.theme = state.theme;
+  $$('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
+  $$('[data-lang]').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === state.lang));
+  $$('[data-theme-set]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themeSet === state.theme));
+  $('#map').setAttribute('aria-label', t('nav.map'));
+}
+
+function render() {
+  if (state.sel != null && !shown().some(d => d.id === state.sel)) { state.sel = null; writeHash(); }
+  renderChrome();
+  if (state.view === 'map') {
+    renderCartouche(); renderLegend(); renderStrip(); renderKinds(); renderList(); renderMap(); renderMapText();
+  } else if (state.view === 'patterns') renderPatterns();
+  else if (state.view === 'data') renderData();
+  else renderMethod();
+}
+
+const tip = $('#tip');
+function showTip(html, x, y) {
+  tip.innerHTML = html; tip.hidden = false;
+  const r = tip.getBoundingClientRect();
+  tip.style.left = Math.max(6, Math.min(window.innerWidth - r.width - 6, x - r.width / 2)) + 'px';
+  tip.style.top = Math.max(6, y - r.height - 12) + 'px';
+}
+const hideTip = () => { tip.hidden = true; };
+
+function wire() {
+  $('#nav').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setView(b.dataset.view); });
+  $('.wordmark').addEventListener('click', e => { e.preventDefault(); setView('map'); });
+  document.addEventListener('click', e => {
+    const lang = e.target.closest('[data-lang]');
+    if (lang) { state.lang = lang.dataset.lang; persist(); render(); return; }
+    const th = e.target.closest('[data-theme-set]');
+    if (th) { state.theme = th.dataset.themeSet; persist(); render(); paintBase(); return; }
+    const cat = e.target.closest('[data-cat]');
+    if (cat) { const k = cat.dataset.cat; state.cats.has(k) ? state.cats.delete(k) : state.cats.add(k); render(); return; }
+    const kind = e.target.closest('[data-kind]');
+    if (kind) { const k = kind.dataset.kind; state.kinds.has(k) ? state.kinds.delete(k) : state.kinds.add(k); render(); return; }
+    const tb = e.target.closest('[data-table]');
+    if (tb) { state.table = tb.dataset.table; render(); return; }
+    const act = e.target.closest('[data-act]');
+    if (act) {
+      const a = act.dataset.act;
+      if (a === 'clear') clearFilters();
+      else if (a === 'allcats') { state.cats.clear(); render(); }
+      else if (a === 'interp') { state.interp = !state.interp; persist(); render(); }
+      else if (a === 'showmap') { select(+act.dataset.id, { view: 'map', force: true, scroll: false }); $('.mapwrap').scrollIntoView({ block: 'nearest' }); }
+      else if (a === 'open') select(+act.dataset.id, { view: 'map', force: true });
+      else if (a === 'dl') downloadTable();
+      else if (a === 'dlall') downloadMaster();
+      return;
+    }
+    const entry = e.target.closest('#list .entry > button');
+    if (entry) { select(+entry.parentNode.dataset.id, { toggle: true, scroll: false }); return; }
+    const cellBtn = e.target.closest('#strip button[data-id]');
+    if (cellBtn) { select(+cellBtn.dataset.id, { toggle: true }); return; }
+    const pt = e.target.closest('.swarm .pt');
+    if (pt) { hideTip(); select(+pt.dataset.id, { view: 'map', force: true }); }
+  });
+  $('#q').addEventListener('input', e => { state.q = e.target.value.trim(); render(); });
+
+  // Hover: list entry and strip cell light up the marks on the map.
+  const over = (root, selector, idOf) => {
+    root.addEventListener('mouseover', e => { const el = e.target.closest(selector); if (el) highlight(idOf(el), true); });
+    root.addEventListener('mouseout', e => { const el = e.target.closest(selector); if (el) highlight(idOf(el), false); });
+  };
+  over($('#list'), '.entry', el => +el.dataset.id);
+  over($('#strip'), 'button[data-id]', el => +el.dataset.id);
+
+  $('#strip').addEventListener('mousemove', e => {
+    const b = e.target.closest('button[data-id], .gap');
+    if (!b) return hideTip();
+    const r = b.getBoundingClientRect();
+    if (b.dataset.gap) return showTip(esc(t('strip.gapcell', { n: b.dataset.gap })), r.left + r.width / 2, r.top);
+    const d = BY_ID.get(+b.dataset.id);
+    showTip(`<b>${esc(t('decree'))} ${d.id}</b><span>${esc(placeLine(d))}</span><span>${esc(petitioner(d))}</span>`, r.left + r.width / 2, r.top);
+  });
+  $('#strip').addEventListener('mouseleave', hideTip);
+  $('#patterns').addEventListener('mousemove', e => {
+    const p = e.target.closest('.pt'); if (!p) return hideTip();
+    const r = p.getBoundingClientRect();
+    showTip(p.dataset.tip, r.left + r.width / 2, r.top);
+  });
+  $('#patterns').addEventListener('mouseleave', hideTip);
+
+  window.addEventListener('hashchange', () => { readHash(); setView(state.view, true); render(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && state.sel != null && state.view === 'map') select(null); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (map) layoutLabels(); });
+}
+
+/* ===========================================================================
+   15. Start
+=========================================================================== */
+const getJson = (url, optional) => fetch(url).then(r => { if (!r.ok) throw new Error(url + ' ' + r.status); return r.json(); }).catch(err => { if (optional) return null; throw err; });
+
+Promise.all([getJson('./dashboard_data.json'), getJson('./basemap.json'), getJson('./interpretive_layer.json', true)])
+  .then(([src, basemap, layer]) => {
+    if (!Array.isArray(src.petitioners) || !Array.isArray(src.locations) || !Array.isArray(src.receivers)) throw new Error('dashboard_data.json: unexpected format');
+    build(src, layer);
+    readHash();
+    wire();
+    renderChrome();
+    setView(state.view, true);
+    initMap(basemap);
+    render();
+    if (state.sel != null) { scrollToEntry(state.sel); showDecreeOnMap(BY_ID.get(state.sel), true); }
+  })
+  .catch(err => {
+    console.error(err);
+    document.documentElement.dataset.theme = state.theme;
+    $('#main').innerHTML = `<div class="loaderr"><h1>${esc(t('err.h'))}</h1><p>${esc(t('err.p'))}</p><p><code>${esc(err.message)}</code></p></div>`;
+  });
+})();
+</script>
+</body>
+</html>
